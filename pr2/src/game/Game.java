@@ -2,13 +2,11 @@ package game;
 
 import java.util.Random;
 
+import board.BoardInitializer;
 import board.GameObjectBoard;
-import chars.Bomb;
-import chars.DestroyerShip;
-import chars.Ovni;
-import chars.UCMShip;
 import gameObject.AlienShip;
 import gameObject.GameObject;
+import interfaces.IPlayerController;
 
 public class Game implements IPlayerController{
 	public final static int DIM_X = 9;
@@ -94,6 +92,42 @@ public class Game implements IPlayerController{
 		else if (aliensWin()) return "Aliens win!";
 		else if (doExit) return "Player exits the game";
 		else return "This should not happen";
+	}
+
+	@Override
+	public boolean move(int numCells) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean shootMissile() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean shockWave() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void receivePoints(int points) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableShockWave() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableMissile() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	// TODO implementar los metodos del interfaz IPlayerController
