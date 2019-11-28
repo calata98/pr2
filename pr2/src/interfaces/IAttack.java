@@ -1,6 +1,6 @@
 package interfaces;
 
-import gameObject.GameObject;
+import objects.GameObject;
 
 public interface IAttack {
 

@@ -4,8 +4,9 @@ import java.util.Random;
 
 import board.BoardInitializer;
 import board.GameObjectBoard;
-import gameObject.AlienShip;
-import gameObject.GameObject;
+import objects.AlienShip;
+import objects.GameObject;
+import objects.UCMShip;
 import interfaces.IPlayerController;
 
 public class Game implements IPlayerController{
@@ -15,6 +16,7 @@ public class Game implements IPlayerController{
 	private int currentCycle;
 	private Random rand;
 	private Level level;
+	private int points;
 
 	GameObjectBoard board;
 
@@ -33,7 +35,7 @@ public class Game implements IPlayerController{
 	public void initGame () {
 		currentCycle = 0;
 		board = initializer.initialize(this, level);
-		player = new UCMShip(this, DIM_X / 2, DIM_Y - 1);
+		player = new UCMShip(this, DIM_X / 2, DIM_Y - 1, 3);
 		board.add(player);
 	}
 
@@ -53,9 +55,9 @@ public class Game implements IPlayerController{
 		board.add(object);
 	}
 	
-	public String positionToString( /* coordinadas */ ) {
-		return board.toString( /* coordinadas */ );
-
+	public String positionToString(int x, int y) {
+		return board.toString(x,y);
+	}
 	public boolean isFinished() {
 		return playerWin() || aliensWin() || doExit;
 	}
@@ -75,8 +77,8 @@ public class Game implements IPlayerController{
 	}
 	
 
-	public boolean isOnBoard( /* coordenadas */ ) {
-		return /* condicion de rango sobre las coordenadas */ ;
+	public boolean isOnBoard(int x, int y) {
+		return (x <= DIM_X && x >= 0 || y <= DIM_Y && y >= 0) ;
 	}
 	
 	public void exit() {
@@ -84,7 +86,23 @@ public class Game implements IPlayerController{
 	}
 	
 	public String infoToString() {
-		return /* cadena estado-juego para imprimir junto con el tablero */; 
+		String str = "";
+		
+		
+		str += "Life: " + player.getLive() + " \n";
+		str += "Number of cycles: " + currentCycle + " \n";
+		str += "Points: " + points + " \n";
+		str += "Remaining aliens: "/* + (destroyerShipList.getNumD() + regularShipList.getNumR()) */ + " \n";	
+		str += "ShockWave: ";
+		
+			/*if(shockwave) {
+				str += "Si";
+			}else {
+				str += "No";
+			}*/
+			
+		
+		return str;
 	}
 	
 	public String getWinnerMessage () {
@@ -96,7 +114,7 @@ public class Game implements IPlayerController{
 
 	@Override
 	public boolean move(int numCells) {
-		// TODO Auto-generated method stub
+		player.move();
 		return false;
 	}
 

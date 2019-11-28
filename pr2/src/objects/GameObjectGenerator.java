@@ -1,5 +1,6 @@
-package gameObject;
+package objects;
 
+import files.FileContentsVerifier;
 import game.Game;
 
 public class GameObjectGenerator {
@@ -10,9 +11,9 @@ public class GameObjectGenerator {
 			new RegularAlien(),
 			new DestroyerAlien(),
 			new ExplosiveAlien(),
-			new ShockWave(),
+			new Shockwave(),
 			new Bomb(),
-			new Missile()
+			new UCMMissile(),
 			new Supermissile()
 		};
 

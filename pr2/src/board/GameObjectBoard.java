@@ -1,6 +1,6 @@
 package board;
 
-import gameObject.GameObject;
+import objects.GameObject;
 
 public class GameObjectBoard {
 
@@ -11,25 +11,52 @@ public class GameObjectBoard {
 		// TODO implement
 	}
 	
-	private int getCurrentObjects () {
+	/*private int getCurrentObjects () {
 		// TODO implement
-	}
+	}*/
 	
 	public void add (GameObject object) {
-		// TODO implement
+		boolean nulo = false;
+		int contador = 0;
+		while(!nulo) {
+			if(objects[contador] == null) {
+				nulo = true;
+			}
+			contador++;
+		}
+		objects[contador] = object;
 	}
 	
-	private GameObject getObjectInPosition ( /* coordinadas */ ) {
-		// TODO implement
+	private GameObject getObjectInPosition (int x, int y) {
+		boolean found = false;
+		int contador = 0;
+		while(!found) {
+			if(objects[contador].isOnPosition(x, y)) {
+				found = true;
+			}
+			contador++;
+		}
+		return objects[contador];
 	}
 	
-	private int getIndex( /* coordinadas */ ) {
-		// TODO implement
+	private int getIndex(int x, int y) {
+		boolean found = false;
+		int contador = 0;
+		while(!found) {
+			if(objects[contador].isOnPosition(x, y)) {
+				found = true;
+			}
+			contador++;
+		}
+		return contador;
 	}
 
-	/* si vuestra soluci\'on requiere que sea public, se puede cambiar */
-	private void remove (GameObject object) {
-		// TODO implement
+	public void remove (GameObject object) {
+		for(int i = 0; i < objects.length; i++) {
+			if(objects[i].equals(object)) {
+				objects[i] = null;
+			}
+		}
 	}
 	
 	public void update() {
@@ -48,8 +75,8 @@ public class GameObjectBoard {
 		// TODO implement
 	}
 
-	public String toString( /* coordinadas */ ) {
-		// TODO implement
+	public String toString(int x, int y) {
+		return "";
 	}
 	
 }

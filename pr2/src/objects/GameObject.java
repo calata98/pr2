@@ -1,15 +1,21 @@
-package gameObject;
+package objects;
 
 import game.Game;
 import interfaces.IAttack;
 
 public abstract class GameObject implements IAttack {
-	/*protected /* coordinadas ;*/
+	protected int x;
+	protected int y;
 	protected int live;
 	protected Game game;
 	
-	public GameObject( Game game, /* coordinadas iniciales , */int live) {
-		/* almacenar coordinadas iniciales */
+	public GameObject() {
+		
+	}
+	
+	public GameObject( Game game, int x, int y, int live) {
+		this.x = x;
+		this.y = y;
 		this.game = game;
 		this.live = live;
 	}
@@ -24,8 +30,8 @@ public abstract class GameObject implements IAttack {
 		return this.live;
 	}
 	
-	public boolean isOnPosition( /* otras coordinadas */ ) {
-		return /* coordinadas = otras coordinadas */ ;
+	public boolean isOnPosition(int x, int y) {
+		return (this.x == x && this.y == y) ;
 	}
 
 	public void getDamage (int damage) {
@@ -33,7 +39,7 @@ public abstract class GameObject implements IAttack {
 	}
 	
 	public boolean isOut() {
-		return !game.isOnBoard( /* coordinadas */ );
+		return !game.isOnBoard(x, y);
 	}
 
 	public abstract void computerAction();

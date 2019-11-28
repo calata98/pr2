@@ -2,6 +2,9 @@ package board;
 
 import game.Game;
 import game.Level;
+import objects.DestroyerAlien;
+import objects.Ovni;
+import objects.RegularAlien;
 
 public class BoardInitializer {
 
@@ -22,15 +25,25 @@ public class BoardInitializer {
 	}
 	
 	private void initializeOvni () {
-		// TODO implement
+		board.add(new Ovni(game,0,8,1));
 	}
 
 	private void initializeRegularAliens () {
-		// TODO implement
+		for(int i = 0; i < level.getNumRegularAliens(); i++) {
+			if(level.getNumRegularAliensPerRow() % i == 0) {
+				
+			}
+			board.add(new RegularAlien());
+		}
 	}
 	
 	private void initializeDestroyerAliens() {
-		// TODO implement
+		for(int i = 0; i < level.getNumDestroyerAliens(); i++) {
+			if(level.getNumDestroyerAliensPerRow() % i == 0) {
+				
+			}
+			board.add(new DestroyerAlien());
+		}
 	}
 	
 }

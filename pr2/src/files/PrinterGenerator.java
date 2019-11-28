@@ -1,6 +1,7 @@
 package files;
 
 import interfaces.GamePrinter;
+import game.BoardPrinter;
 
 public class PrinterGenerator {
 

@@ -8,7 +8,7 @@ public class ShootCommand extends Command {
 			super("Shoot","s","Shoot","UCM-Ship launches a missile.");
 		}
 		public boolean execute(Game game) {	
-				game.playerShoot();	
+				game.shootMissile();	
 			return true;
 		}
 		public Command parse(String[] commandWords) {

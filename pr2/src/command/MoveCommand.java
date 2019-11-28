@@ -3,18 +3,16 @@ package command;
 import game.Game;
 
 public class MoveCommand extends Command {
-private String move;
 private int n;
 	public MoveCommand() {
 		super("Move", "m","Move","move <left|right><1|2>: Moves UCM-Ship to the indicated direction.");
 	}
 	public MoveCommand(String m,int num) {
 		super("Move", "m","move a ucmship","move <left|right><1|2>: Moves UCM-Ship to the indicated direction.");
-		move=m;
 		n=num;
 	}
 	public boolean execute(Game game) {
-		game.movePlayer(move,n);
+		game.move(n);
 		return true;
 	}
 	public Command parse(String[] commandWords) {

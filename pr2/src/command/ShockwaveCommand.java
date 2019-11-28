@@ -8,10 +8,7 @@ public class ShockwaveCommand extends Command {
 		super("Shockwave","w","Shockwave","UCM-Ship releases a shock wave.");
 	}
 	public boolean execute(Game game) {
-		if(game.getShockwave())
-		{
-		game.shockwave();
-		}
+		game.shockWave();
 		return true;
 	}
 	public Command parse(String[] commandWords) {
