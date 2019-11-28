@@ -20,7 +20,13 @@ public abstract class GameObject implements IAttack {
 		this.live = live;
 	}
 	
-	/* métodos que devuelven el valor de las coordinadas */
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
 
 	public boolean isAlive() {
 		return this.live > 0;

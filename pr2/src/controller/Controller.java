@@ -5,7 +5,7 @@ import java.util.Scanner;
 import command.Command;
 import command.CommandGenerator;
 import game.Game;
-import game.BoardPrinter;
+import Printers.BoardPrinter;
 
 public class Controller {
 
@@ -45,11 +45,10 @@ public class Controller {
 				draw = new BoardPrinter(game, 8, 9);
 				System.out.println(draw.toString());
 				System.out.println("Command > ");
-					}
-					else {
-					System.out.format("COMANDO ERRRONEO\n");
-					System.out.println("Command > ");
-					}
+			}else {
+				System.out.format("COMANDO ERRRONEO\n");
+				System.out.println("Command > ");
+			}
 			/*if(!game.pasarTurno()) {
 				end = true;
 			}*/

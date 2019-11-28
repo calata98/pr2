@@ -1,7 +1,8 @@
-package files;
+package exceptions;
 
 import game.Game;
 import game.Level;
+import objects.Move;
 
 public class FileContentsVerifier {
 

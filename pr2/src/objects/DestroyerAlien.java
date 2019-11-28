@@ -1,7 +1,15 @@
 package objects;
 
+import game.Game;
+
 public class DestroyerAlien extends AlienShip{
 
+	public DestroyerAlien(Game game, int x, int y, int live) {
+		super(game, x, y, live);
+	}
+	
+	
+	
 	@Override
 	public void computerAction() {
 		// TODO Auto-generated method stub
@@ -16,8 +24,12 @@ public class DestroyerAlien extends AlienShip{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "D[" + this.live + "]";
 	}
+
+	
+	
+	
+	
 
 }

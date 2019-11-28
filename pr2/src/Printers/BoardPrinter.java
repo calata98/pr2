@@ -1,8 +1,9 @@
-package game;
+package Printers;
 
+import game.Game;
 import util.MyStringUtils;
 
-public class BoardPrinter {
+public class BoardPrinter extends GamePrinter{
 			
 		int numRows; 
 		int numCols;
@@ -20,7 +21,7 @@ public class BoardPrinter {
 			board = new String[numRows][numCols];
 			for(int i = 0; i < numRows; i++) {
 				for(int j = 0; j < numCols; j++) {
-					//board[i][j] =  game.characterAtToString(i, j);
+					board[i][j] =  game.positionToString(i, j);
 				}
 			}
 		}

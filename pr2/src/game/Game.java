@@ -10,8 +10,8 @@ import objects.UCMShip;
 import interfaces.IPlayerController;
 
 public class Game implements IPlayerController{
-	public final static int DIM_X = 9;
-	public final static int DIM_Y = 8;
+	public final static int DIM_X = 8;
+	public final static int DIM_Y = 9;
 
 	private int currentCycle;
 	private Random rand;
@@ -35,7 +35,7 @@ public class Game implements IPlayerController{
 	public void initGame () {
 		currentCycle = 0;
 		board = initializer.initialize(this, level);
-		player = new UCMShip(this, DIM_X / 2, DIM_Y - 1, 3);
+		player = new UCMShip(this, DIM_X - 1, DIM_Y / 2, 3);
 		board.add(player);
 	}
 

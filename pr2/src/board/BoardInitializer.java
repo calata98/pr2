@@ -12,6 +12,7 @@ public class BoardInitializer {
 	private Level level;
 	private GameObjectBoard board;
 	private Game game;
+	private int filaI;
 	
 	public  GameObjectBoard initialize(Game game, Level level) {
 		this.level = level;
@@ -29,20 +30,28 @@ public class BoardInitializer {
 	}
 
 	private void initializeRegularAliens () {
+		int columnaI = 3;
+		filaI = 1;
 		for(int i = 0; i < level.getNumRegularAliens(); i++) {
-			if(level.getNumRegularAliensPerRow() % i == 0) {
-				
+			board.add(new RegularAlien(game,filaI,columnaI,2));
+			if(i != 0 && (i + 1) % level.getNumRegularAliensPerRow() == 0) {
+				filaI++;
+				columnaI = 2;
 			}
-			board.add(new RegularAlien());
+			columnaI++;
 		}
 	}
 	
 	private void initializeDestroyerAliens() {
+		int columnaI = 3;
 		for(int i = 0; i < level.getNumDestroyerAliens(); i++) {
-			if(level.getNumDestroyerAliensPerRow() % i == 0) {
-				
+			if(level.getNumDestroyerAliens() > 2) {
+				board.add(new DestroyerAlien(game,filaI,columnaI,1));
+			}else {
+				board.add(new DestroyerAlien(game,filaI,columnaI + 1,1));
 			}
-			board.add(new DestroyerAlien());
+			
+			columnaI++;
 		}
 	}
 	

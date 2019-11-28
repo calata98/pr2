@@ -11,7 +11,6 @@ public class RegularAlien extends AlienShip{
 	
 	public RegularAlien(Game game, int x, int y, int live) {
 		super(game, x, y, live);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -28,8 +27,7 @@ public class RegularAlien extends AlienShip{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "R[" + this.live + "]";
 	}
 
 }

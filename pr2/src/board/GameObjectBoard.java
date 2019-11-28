@@ -8,35 +8,33 @@ public class GameObjectBoard {
 	private int currentObjects;
 	
 	public GameObjectBoard (int width, int height) {
-		// TODO implement
+		objects = new GameObject [25];
 	}
 	
-	/*private int getCurrentObjects () {
-		// TODO implement
-	}*/
+	private int getCurrentObjects () {
+		return currentObjects;
+	}
 	
 	public void add (GameObject object) {
 		boolean nulo = false;
-		int contador = 0;
+		int contador = -1;
 		while(!nulo) {
-			if(objects[contador] == null) {
+			contador++;
+			if(contador < objects.length && objects[contador] == null) {
 				nulo = true;
 			}
-			contador++;
 		}
 		objects[contador] = object;
+		currentObjects++;
 	}
 	
 	private GameObject getObjectInPosition (int x, int y) {
-		boolean found = false;
-		int contador = 0;
-		while(!found) {
-			if(objects[contador].isOnPosition(x, y)) {
-				found = true;
+		for(int i = 0; i < objects.length; i++) {
+			if(objects[i] != null && objects[i].isOnPosition(x, y)) {
+				return objects[i];
 			}
-			contador++;
 		}
-		return objects[contador];
+		return null;
 	}
 	
 	private int getIndex(int x, int y) {
@@ -55,12 +53,17 @@ public class GameObjectBoard {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i].equals(object)) {
 				objects[i] = null;
+				currentObjects--;
 			}
 		}
 	}
 	
 	public void update() {
-		// TODO implement
+
+		for(int i = 0; i < objects.length; i++) {
+			
+		}
+		
 	}
 	
 	private void checkAttacks(GameObject object) {
@@ -76,7 +79,11 @@ public class GameObjectBoard {
 	}
 
 	public String toString(int x, int y) {
-		return "";
+		if(getObjectInPosition(x,y) != null) {
+			return getObjectInPosition(x,y).toString();
+		}else {
+			return "";
+		}
 	}
 	
 }

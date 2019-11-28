@@ -1,33 +1,21 @@
 package objects;
 
-import game.Game;
 
-public class Weapon extends GameObject {
+public abstract class Weapon extends GameObject {
+
+	
 
 	@Override
-	public void computerAction() {
-		// TODO Auto-generated method stub
+	public boolean performAttack(GameObject other) {
 		
-	}
-
-	@Override
-	public void onDelete() {
-		// TODO Auto-generated method stub
+		if(this.isAlive() && other.isAlive()) {
+			if(other.isOnPosition(x, y)) {
+				
+			}
+		}
 		
+		return true;
 	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 
 }

@@ -21,20 +21,28 @@ public class UCMShip extends Ship{
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		if(this.isAlive()) {
+			return "^___^";
+		}else {
+			return "!xx!";
+		}
 	}
 
 	@Override
 	public void computerAction() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public boolean receiveBombAttack(int damage) {
+		this.live -= 1;
+		return true;
 	}
 	
 	

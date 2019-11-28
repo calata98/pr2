@@ -37,8 +37,7 @@ public class Ovni extends AlienShip{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "O[" + this.live + "]";
 	}
 	
 	public int getPoints() {
