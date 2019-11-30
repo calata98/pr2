@@ -4,8 +4,7 @@ import game.Game;
 
 public abstract class AlienShip extends EnemyShip{
 	
-	private String direccion;
-	private String direccionAnt;
+	private int dir;
 	
 	public AlienShip() {
 		
@@ -13,40 +12,52 @@ public abstract class AlienShip extends EnemyShip{
 	
 	public AlienShip(Game game, int x, int y, int live) {
 		super(game, x, y, live);
-		this.direccion = "izq";
-		this.direccionAnt = "izq";
+		dir = 1;
 	}
 	
 	@Override
 	public void move() {
-		switch(direccion) {
-			case "izq":
-				this.y -= 1;
-				direccionAnt = "izq";
-				break;
-			case "dcha":
-				this.y += 1;
-				direccionAnt = "dcha";
-				break;
-			case "abajo":
-				this.x += 1;
-				
-				if(direccionAnt.equals("izq")) {
-					direccion = "dcha";
-				}else {
-					direccion = "izq";
-				}
-				direccionAnt = "abajo";
-				
-				break;
-		}
 		
-		if(y == 0 || y == 9 && !direccionAnt.equals("abajo")) {
-			this.direccion = "abajo";
+		switch(dir) {
+			case 0:
+				x += 1;
+				break;
+			case 1:
+				y -= 1;
+				break;
+			case 2:
+				x += 1;
+				break;
+			case 3:
+				y += 1;
+				break;
+				
 		}
 		
 	}
 	
+	@Override
+	public void computerAction() {
+		
+		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
+			move();
+		}
+		
+	}
+	
+	public boolean pared() {
+		return y == 0 || y == 8;
+	}
+	
+	public void swapDir() {
+		
+		if(dir != 3) {
+			dir++;
+		}else {
+			dir = 0;
+		}
+		
+	}
 	
 	public static boolean allDead() {
 		

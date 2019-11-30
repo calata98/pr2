@@ -2,7 +2,7 @@ package objects;
 
 import game.Game;
 
-public class Ovni extends AlienShip{
+public class Ovni extends EnemyShip{
 
 	private boolean enabled;
 	private int points = 25;

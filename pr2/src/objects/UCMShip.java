@@ -4,6 +4,9 @@ import game.Game;
 import interfaces.IPlayerController;
 
 public class UCMShip extends Ship{
+	
+	private String direccion;
+	private int numCeldas;
 
 	public UCMShip() {
 		
@@ -13,6 +16,8 @@ public class UCMShip extends Ship{
 		super(game, x, y, live);
 	}
 
+	
+	
 	@Override
 	public void onDelete() {
 		// TODO Auto-generated method stub
@@ -21,8 +26,13 @@ public class UCMShip extends Ship{
 
 	@Override
 	public void move() {
-		
+		if(direccion.equals("right")) {
+			y += numCeldas;
+		}else {
+				y -= numCeldas;
+		}
 	}
+	
 
 	@Override
 	public String toString() {
@@ -43,6 +53,11 @@ public class UCMShip extends Ship{
 	public boolean receiveBombAttack(int damage) {
 		this.live -= 1;
 		return true;
+	}
+	
+	public void setMove(String dir, int num) {
+		this.direccion = dir;
+		this.numCeldas = num;
 	}
 	
 	

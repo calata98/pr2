@@ -40,11 +40,13 @@ public class Controller {
 			Command command = CommandGenerator.parseCommand(words);
 
 			if (command != null) {
-				if (command.execute(game))
-				System.out.println(game.infoToString());
-				draw = new BoardPrinter(game, 8, 9);
-				System.out.println(draw.toString());
-				System.out.println("Command > ");
+				if (command.execute(game)) {
+					game.update();
+					System.out.println(game.infoToString());
+					draw = new BoardPrinter(game, 8, 9);
+					System.out.println(draw.toString());
+					System.out.println("Command > ");
+				}
 			}else {
 				System.out.format("COMANDO ERRRONEO\n");
 				System.out.println("Command > ");

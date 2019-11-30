@@ -1,14 +1,17 @@
 package board;
 
+import objects.AlienShip;
 import objects.GameObject;
 
 public class GameObjectBoard {
 
 	private GameObject[] objects;
 	private int currentObjects;
+	private boolean prueba;
 	
 	public GameObjectBoard (int width, int height) {
 		objects = new GameObject [25];
+		prueba = false;
 	}
 	
 	private int getCurrentObjects () {
@@ -59,10 +62,11 @@ public class GameObjectBoard {
 	}
 	
 	public void update() {
-
 		for(int i = 0; i < objects.length; i++) {
 			
 		}
+		
+		
 		
 	}
 	

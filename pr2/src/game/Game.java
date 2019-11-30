@@ -25,6 +25,8 @@ public class Game implements IPlayerController{
 	private boolean doExit;
 	private BoardInitializer initializer;
 	
+	
+	
 	public Game (Level level, Random random){
 		this.rand = random;
 		this.level = level;
@@ -113,9 +115,10 @@ public class Game implements IPlayerController{
 	}
 
 	@Override
-	public boolean move(int numCells) {
+	public boolean move(String direccion,int numCells) {
+		player.setMove(direccion, numCells);
 		player.move();
-		return false;
+		return true;
 	}
 
 	@Override
@@ -147,6 +150,12 @@ public class Game implements IPlayerController{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int getCurrentCycle() {
+		return currentCycle;
+	}
+	
+	
 	
 	// TODO implementar los metodos del interfaz IPlayerController
 }

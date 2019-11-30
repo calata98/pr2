@@ -14,12 +14,6 @@ public class RegularAlien extends AlienShip{
 	}
 
 	@Override
-	public void computerAction() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void onDelete() {
 		// TODO Auto-generated method stub
 		
