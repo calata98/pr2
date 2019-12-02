@@ -48,6 +48,8 @@ public abstract class GameObject implements IAttack {
 		return !game.isOnBoard(x, y);
 	}
 
+	
+	public abstract void update();
 	public abstract void computerAction();
 	public abstract void onDelete();
 	public abstract void move();

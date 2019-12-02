@@ -7,6 +7,7 @@ public class UCMShip extends Ship{
 	
 	private String direccion;
 	private int numCeldas;
+	private UCMMissile misil;
 
 	public UCMShip() {
 		
@@ -29,8 +30,18 @@ public class UCMShip extends Ship{
 		if(direccion.equals("right")) {
 			y += numCeldas;
 		}else {
-				y -= numCeldas;
+			y -= numCeldas;
 		}
+	}
+	
+	public boolean shoot() {
+		if(misil == null) {
+			misil = new UCMMissile(game,x,y,1);
+			game.addObject(misil);
+			return true;
+		}
+		
+		return false;
 	}
 	
 
@@ -45,7 +56,10 @@ public class UCMShip extends Ship{
 
 	@Override
 	public void computerAction() {
-		// TODO Auto-generated method stub
+
+		if(AlienShip.haveLanded()) {
+			live = 0;
+		}
 		
 	}
 	
@@ -58,6 +72,16 @@ public class UCMShip extends Ship{
 	public void setMove(String dir, int num) {
 		this.direccion = dir;
 		this.numCeldas = num;
+	}
+
+	@Override
+	public void update() {
+		
+		if(misil.x == 0) {
+			misil = null;
+			game.removeObject(misil);
+		}
+		
 	}
 	
 	

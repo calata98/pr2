@@ -4,7 +4,9 @@ import game.Game;
 
 public abstract class AlienShip extends EnemyShip{
 	
-	private int dir;
+	private static Move dir;
+	private Move dirAnt;
+	private static boolean tierra;
 	
 	public AlienShip() {
 		
@@ -12,65 +14,68 @@ public abstract class AlienShip extends EnemyShip{
 	
 	public AlienShip(Game game, int x, int y, int live) {
 		super(game, x, y, live);
-		dir = 1;
+		dir = Move.IZQ;
+		dirAnt = Move.IZQ;
+		tierra = false;
 	}
 	
 	@Override
 	public void move() {
 		
 		switch(dir) {
-			case 0:
-				x += 1;
-				break;
-			case 1:
+			case IZQ:
 				y -= 1;
 				break;
-			case 2:
-				x += 1;
-				break;
-			case 3:
+			case DCHA:
 				y += 1;
 				break;
-				
+			case ABAJO:
+				x += 1;
+				break;
 		}
-		
-	}
-	
-	@Override
-	public void computerAction() {
-		
-		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
-			move();
+		if(x == game.DIM_X) {
+			tierra = true;
 		}
-		
+		dirAnt = dir;
 	}
 	
 	public boolean pared() {
-		return y == 0 || y == 8;
+			return y == 0 || y == 8;
 	}
 	
-	public void swapDir() {
+	
+	@Override
+	public void update() {
 		
-		if(dir != 3) {
-			dir++;
+		if(pared() && dirAnt != Move.ABAJO) {
+			dir = Move.ABAJO;
 		}else {
-			dir = 0;
+			if(pared()) {
+				if(y == 0) {
+					dir = Move.DCHA;
+				}else {
+					dir = Move.IZQ;
+				}
+			}
 		}
 		
+	}
+	
+	public boolean receiveMissileAttack(int dmg) {
+		getDamage(dmg);
+
+		return true;
 	}
 	
 	public static boolean allDead() {
 		
 		
 		
-		return true;
+		return false;
 	}
 	
 	public static boolean haveLanded() {
-		
-		
-		
-		return true;
+		return tierra;
 	}
 	
 }

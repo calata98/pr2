@@ -37,11 +37,21 @@ public class Ovni extends EnemyShip{
 
 	@Override
 	public String toString() {
-		return "O[" + this.live + "]";
+		if(enabled) {
+			return "O[" + this.live + "]";
+		}else {
+			return "";
+		}
 	}
 	
 	public int getPoints() {
 		return points;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

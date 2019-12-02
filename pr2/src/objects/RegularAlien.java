@@ -23,5 +23,15 @@ public class RegularAlien extends AlienShip{
 	public String toString() {
 		return "R[" + this.live + "]";
 	}
+	
+
+	
+	@Override
+	public void computerAction() {
+		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
+				move();
+		}
+		
+	}
 
 }

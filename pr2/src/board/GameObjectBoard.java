@@ -7,11 +7,9 @@ public class GameObjectBoard {
 
 	private GameObject[] objects;
 	private int currentObjects;
-	private boolean prueba;
 	
 	public GameObjectBoard (int width, int height) {
 		objects = new GameObject [25];
-		prueba = false;
 	}
 	
 	private int getCurrentObjects () {
@@ -19,15 +17,12 @@ public class GameObjectBoard {
 	}
 	
 	public void add (GameObject object) {
-		boolean nulo = false;
-		int contador = -1;
-		while(!nulo) {
-			contador++;
-			if(contador < objects.length && objects[contador] == null) {
-				nulo = true;
+		for( int i = 0; i < objects.length; i++) {
+			if(objects[i] == null) {
+				objects[i] = object;
+				break;
 			}
 		}
-		objects[contador] = object;
 		currentObjects++;
 	}
 	
@@ -54,7 +49,8 @@ public class GameObjectBoard {
 
 	public void remove (GameObject object) {
 		for(int i = 0; i < objects.length; i++) {
-			if(objects[i].equals(object)) {
+			if(objects[i] != null && objects[i].equals(object)) {
+				objects[i].onDelete();
 				objects[i] = null;
 				currentObjects--;
 			}
@@ -62,8 +58,18 @@ public class GameObjectBoard {
 	}
 	
 	public void update() {
+		
 		for(int i = 0; i < objects.length; i++) {
-			
+			if(objects[i] != null) {
+				objects[i].update();
+			}
+		}
+		
+		for(int i = 0; i < objects.length; i++) {
+			if(objects[i] != null) {
+				objects[i].computerAction();
+				
+			}
 		}
 		
 		

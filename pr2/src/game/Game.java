@@ -10,8 +10,8 @@ import objects.UCMShip;
 import interfaces.IPlayerController;
 
 public class Game implements IPlayerController{
-	public final static int DIM_X = 8;
-	public final static int DIM_Y = 9;
+	public final static int DIM_X = 7;
+	public final static int DIM_Y = 8;
 
 	private int currentCycle;
 	private Random rand;
@@ -37,8 +37,9 @@ public class Game implements IPlayerController{
 	public void initGame () {
 		currentCycle = 0;
 		board = initializer.initialize(this, level);
-		player = new UCMShip(this, DIM_X - 1, DIM_Y / 2, 3);
+		player = new UCMShip(this, DIM_X, DIM_Y / 2, 3);
 		board.add(player);
+		doExit = false;
 	}
 
 	public Random getRandom() {
@@ -55,6 +56,10 @@ public class Game implements IPlayerController{
 	
 	public void addObject(GameObject object) {
 		board.add(object);
+	}
+	
+	public void removeObject(GameObject object) {
+		board.remove(object);
 	}
 	
 	public String positionToString(int x, int y) {
@@ -80,7 +85,7 @@ public class Game implements IPlayerController{
 	
 
 	public boolean isOnBoard(int x, int y) {
-		return (x <= DIM_X && x >= 0 || y <= DIM_Y && y >= 0) ;
+		return (x <= DIM_X && x >= 0 && y <= DIM_Y && y >= 0) ;
 	}
 	
 	public void exit() {
@@ -123,8 +128,7 @@ public class Game implements IPlayerController{
 
 	@Override
 	public boolean shootMissile() {
-		// TODO Auto-generated method stub
-		return false;
+		return player.shoot();
 	}
 
 	@Override
@@ -135,7 +139,6 @@ public class Game implements IPlayerController{
 
 	@Override
 	public void receivePoints(int points) {
-		// TODO Auto-generated method stub
 		
 	}
 

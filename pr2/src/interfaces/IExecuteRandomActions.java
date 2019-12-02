@@ -9,7 +9,7 @@ public interface IExecuteRandomActions {
 		return game.getRandom().nextDouble() < game.getLevel().getOvniFrequency();
 	}
 	
-	static boolean  canGenerateRandomBomb(Game game){
+	static boolean canGenerateRandomBomb(Game game){
 		return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();	
 	}
 	

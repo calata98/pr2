@@ -46,15 +46,19 @@ public class Controller {
 					draw = new BoardPrinter(game, 8, 9);
 					System.out.println(draw.toString());
 					System.out.println("Command > ");
+				}else {
+					System.out.format("COMANDO ERRRONEO\n");
+					System.out.println("Command > ");
 				}
 			}else {
 				System.out.format("COMANDO ERRRONEO\n");
 				System.out.println("Command > ");
 			}
-			/*if(!game.pasarTurno()) {
+			if(game.isFinished()) {
 				end = true;
-			}*/
+			}
 		}
+		System.out.println(game.getWinnerMessage());
 		/*if(game.win()) {
 			
 			win();
