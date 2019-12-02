@@ -78,7 +78,6 @@ public class Game implements IPlayerController{
 	}
 	
 	public void update() {
-		board.computerAction();
 		board.update();
 		currentCycle += 1;
 	}
@@ -144,13 +143,15 @@ public class Game implements IPlayerController{
 
 	@Override
 	public void enableShockWave() {
-		// TODO Auto-generated method stub
+
+		
 		
 	}
 
 	@Override
 	public void enableMissile() {
-		// TODO Auto-generated method stub
+
+		
 		
 	}
 	

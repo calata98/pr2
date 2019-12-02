@@ -13,6 +13,10 @@ public class Bomb extends Weapon {
 		// TODO Auto-generated method stub
 		
 	}
+	public boolean receiveMissileAttack(int dmg) {
+		live -= 1;
+		return true;
+	}
 
 	@Override
 	public void onDelete() {

@@ -12,7 +12,6 @@ public class UCMMissile extends Weapon{
 	@Override
 	public void computerAction() {
 		move();
-		
 	}
 
 	@Override
@@ -38,8 +37,9 @@ public class UCMMissile extends Weapon{
 		
 	}
 	
-	public boolean performAttack(GameObject other){
-		other.receiveBombAttack(live);
+	@Override
+	public boolean receiveBombAttack(int damage) {
+		this.live -= 1;
 		return true;
 	}
 }

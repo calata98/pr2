@@ -13,18 +13,21 @@ public abstract class Weapon extends GameObject {
 		
 		if(this.isAlive() && other.isAlive()) {
 			if(other.isOnPosition(x, y)) {
-				
+				if(this instanceof Bomb) {
+					other.receiveBombAttack(live);
+				}
+				if(this instanceof Shockwave ) {
+					other.receiveShockWaveAttack(live);
+				}
+				if(this instanceof UCMMissile ) {
+					other.receiveMissileAttack(live);
+				}
+				live -= 1;
+				return true;
 			}
 		}
 		
-		return true;
-	}
-	
-	
-	public void weaponAttack(GameObject object) {
-		
-		
-		
+		return false;
 	}
 
 }

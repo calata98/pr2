@@ -1,6 +1,5 @@
 package board;
 
-import objects.AlienShip;
 import objects.GameObject;
 
 public class GameObjectBoard {
@@ -39,7 +38,10 @@ public class GameObjectBoard {
 		boolean found = false;
 		int contador = 0;
 		while(!found) {
-			if(objects[contador].isOnPosition(x, y)) {
+			if(contador >= objects.length) {
+				return -1;
+			}
+			if(objects[contador] != null && objects[contador].isOnPosition(x, y)) {
 				found = true;
 			}
 			contador++;
@@ -58,34 +60,41 @@ public class GameObjectBoard {
 	}
 	
 	public void update() {
-		
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null) {
 				objects[i].update();
 			}
 		}
-		
-		for(int i = 0; i < objects.length; i++) {
-			if(objects[i] != null) {
-				objects[i].computerAction();
-				
-			}
-		}
-		
+		computerAction();
+		removeDead();
 		
 		
 	}
 	
 	private void checkAttacks(GameObject object) {
-		// TODO implement
+			GameObject aux = getObjectInPosition(object.getX(), object.getY());
+			if(aux != null && aux != object) {
+				object.performAttack(aux);
+				//System.out.println(getIndex(objects[i].getX(),objects[i].getY()) + "  " + getIndex(aux.getX(),aux.getY()));
+			}
 	}
 	
 	public void computerAction() {
-		// TODO implement
+		
+		for(int i = objects.length - 1 ; i >= 0 ; i--) {
+			if(objects[i] != null) {
+				objects[i].computerAction();
+				checkAttacks(objects[i]);
+			}
+		}
 	}
 	
 	private void removeDead() {
-		// TODO implement
+		for(int i = 0; i < objects.length; i++) {
+			if(objects[i] != null && !objects[i].isAlive()) {
+				remove(objects[i]);
+			}
+		}
 	}
 
 	public String toString(int x, int y) {

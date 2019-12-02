@@ -1,8 +1,9 @@
 package objects;
 
 import game.Game;
+import interfaces.IExecuteRandomActions;
 
-public class Ovni extends EnemyShip{
+public class Ovni extends EnemyShip implements IExecuteRandomActions{
 
 	private boolean enabled;
 	private int points = 25;
@@ -27,7 +28,14 @@ public class Ovni extends EnemyShip{
 	
 	@Override
 	public void computerAction() {
-		// TODO Auto-generated method stub
+		
+		if(IExecuteRandomActions.canGenerateRandomOvni(game) && !enabled) {
+			enabled = true;
+		}
+
+		if(enabled) {
+			move();
+		}
 	}
 
 	@Override

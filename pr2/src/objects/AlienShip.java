@@ -7,6 +7,7 @@ public abstract class AlienShip extends EnemyShip{
 	private static Move dir;
 	private Move dirAnt;
 	private static boolean tierra;
+	protected static boolean allDead;
 	
 	public AlienShip() {
 		
@@ -63,14 +64,10 @@ public abstract class AlienShip extends EnemyShip{
 	
 	public boolean receiveMissileAttack(int dmg) {
 		getDamage(dmg);
-
 		return true;
 	}
 	
 	public static boolean allDead() {
-		
-		
-		
 		return false;
 	}
 	

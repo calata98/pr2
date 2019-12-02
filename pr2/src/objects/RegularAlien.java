@@ -1,8 +1,9 @@
 package objects;
 
 import game.Game;
+import interfaces.IExecuteRandomActions;
 
-public class RegularAlien extends AlienShip{
+public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 
 	public RegularAlien() {
 		
@@ -15,7 +16,8 @@ public class RegularAlien extends AlienShip{
 
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
+
+		allDead = true;
 		
 	}
 
@@ -28,9 +30,13 @@ public class RegularAlien extends AlienShip{
 	
 	@Override
 	public void computerAction() {
+		allDead = false;
+		
+		
 		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
 				move();
 		}
+		
 		
 	}
 
