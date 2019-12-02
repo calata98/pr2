@@ -15,13 +15,6 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	}
 
 	@Override
-	public void onDelete() {
-
-		allDead = true;
-		
-	}
-
-	@Override
 	public String toString() {
 		return "R[" + this.live + "]";
 	}
@@ -31,11 +24,6 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	@Override
 	public void computerAction() {
 		allDead = false;
-		
-		
-		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
-				move();
-		}
 		
 		
 	}

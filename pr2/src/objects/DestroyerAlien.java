@@ -12,15 +12,6 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 		super(game, x, y, live);
 	}
 	
-	
-	
-	
-
-	@Override
-	public void onDelete() {
-		allDead = true;
-	}
-
 	@Override
 	public String toString() {
 		return "D[" + this.live + "]";
@@ -38,10 +29,6 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 		if(IExecuteRandomActions.canGenerateRandomBomb(game) && bomba == null) {
 			bomba = new Bomb(game,x + 1,y,1);
 			game.addObject(bomba);
-		}
-		
-		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
-				move();
 		}
 		
 	}

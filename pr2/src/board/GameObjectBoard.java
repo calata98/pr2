@@ -65,7 +65,7 @@ public class GameObjectBoard {
 				objects[i].update();
 			}
 		}
-		computerAction();
+		//computerAction();
 		removeDead();
 		
 		
@@ -75,18 +75,12 @@ public class GameObjectBoard {
 			GameObject aux = getObjectInPosition(object.getX(), object.getY());
 			if(aux != null && aux != object) {
 				object.performAttack(aux);
-				//System.out.println(getIndex(objects[i].getX(),objects[i].getY()) + "  " + getIndex(aux.getX(),aux.getY()));
 			}
 	}
 	
 	public void computerAction() {
 		
-		for(int i = objects.length - 1 ; i >= 0 ; i--) {
-			if(objects[i] != null) {
-				objects[i].computerAction();
-				checkAttacks(objects[i]);
-			}
-		}
+		
 	}
 	
 	private void removeDead() {
