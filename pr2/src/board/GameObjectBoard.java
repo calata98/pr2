@@ -1,6 +1,8 @@
 package board;
 
 import objects.GameObject;
+import objects.Ovni;
+import objects.UCMShip;
 
 public class GameObjectBoard {
 
@@ -8,7 +10,7 @@ public class GameObjectBoard {
 	private int currentObjects;
 	
 	public GameObjectBoard (int width, int height) {
-		objects = new GameObject [25];
+		objects = new GameObject [30];
 	}
 	
 	private int getCurrentObjects () {
@@ -63,17 +65,16 @@ public class GameObjectBoard {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null) {
 				objects[i].update();
+				checkAttacks(objects[i]);
+				removeDead();
 			}
 		}
-		//computerAction();
-		removeDead();
-		
 		
 	}
 	
 	private void checkAttacks(GameObject object) {
 			GameObject aux = getObjectInPosition(object.getX(), object.getY());
-			if(aux != null && aux != object) {
+			if(aux != object) {
 				object.performAttack(aux);
 			}
 	}
@@ -86,7 +87,11 @@ public class GameObjectBoard {
 	private void removeDead() {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && !objects[i].isAlive()) {
-				remove(objects[i]);
+				if(!(objects[i] instanceof UCMShip) && !(objects[i] instanceof Ovni)) {
+					remove(objects[i]);
+				}else {
+					objects[i].onDelete();
+				}
 			}
 		}
 	}

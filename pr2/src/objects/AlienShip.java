@@ -4,13 +4,14 @@ import game.Game;
 
 public abstract class AlienShip extends EnemyShip{
 	
-	private static Move dir;
-	private static Move dirAnt;
-	private static boolean abajo;
-	private static boolean tierra;
+	protected static boolean izq;
+	protected static String estado;
+	protected static boolean dirCambiada;
+	protected static boolean tierra;
 	protected static boolean allDead;
-	private static int navesPorMover;
-	private int numNaves;
+	protected static int navesPorMover;
+	protected static int numNaves;
+	protected static boolean naveExplosivaCreada;
 	
 	public AlienShip() {
 		
@@ -18,29 +19,19 @@ public abstract class AlienShip extends EnemyShip{
 	
 	public AlienShip(Game game, int x, int y, int live) {
 		super(game, x, y, live);
-		dir = Move.DCHA;
-		dirAnt = Move.DCHA;
-		abajo = false;
 		tierra = false;
 		numNaves = game.getLevel().getNumDestroyerAliens() + game.getLevel().getNumRegularAliens();
+		izq = true;
+		estado = "normal";
 		navesPorMover = numNaves;
 	}
 	
 	@Override
 	public void move() {
-		switch(dir) {
-			case ABAJO:
-				x += 1;
-				break;
-			case IZQ:
-				y -= 1;
-				break;
-			case DCHA:
-				y += 1;
-				break;
-		}
-		if(x == game.DIM_X) {
-			tierra = true;
+		if(izq) {
+			y -= 1;
+		}else {
+			y += 1;
 		}
 	}
 	
@@ -48,7 +39,14 @@ public abstract class AlienShip extends EnemyShip{
 			return y == 0 || y == 8;
 	}
 	
+	public void moveAbajo() {
 
+		x += 1;
+		
+		if(x == game.DIM_X) {
+			tierra = true;
+		}
+	}
 
 	@Override
 	public void onDelete() {
@@ -58,41 +56,62 @@ public abstract class AlienShip extends EnemyShip{
 	@Override
 	public void update() {
 		
-		if(navesPorMover == numNaves) {
-			if(abajo) {
-				dirAnt = dir;
-				dir = Move.ABAJO; 
-			}
-		}
 		
-		
-		if(game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell() == 0) {
 			navesPorMover--;
-			move();
-		}
 		
+		switch(AlienShip.estado) {
 		
-		if(pared() && !abajo && dir != Move.ABAJO) {
-			abajo = true;
+		case "normal":
+			if(canMove()) {
+				move();
+			}
+			if(pared()) {
+				estado = "llegadaPared";
+			}
+			break;
+		
+		case "llegadaPared":
+			if(canMove()) {
+				move();
+			}
+			if(navesPorMover == 0) {
+				estado = "moverAbajo";
+			}
+			break;
+			
+		case "moverAbajo":
+			moveAbajo();
+			if(navesPorMover == 0) {
+				estado = "salidaPared";
+				dirCambiada = false;
+			}
+			break;	
+			
+		case "salidaPared":
+			if(!dirCambiada) {
+				izq = !izq;
+				dirCambiada = true;
+			}
+			if(canMove()) {
+				move();
+			}
+			
+			if(navesPorMover == 0) {
+				estado = "normal";
+			}
+			break;
 		}
 		
 		if(navesPorMover == 0) {
-			if(abajo && dir == Move.ABAJO) {
-				abajo = !abajo;
-				if(dirAnt == Move.DCHA){
-					dir = Move.IZQ;
-				}else {
-					dir = Move.DCHA;
-				}
-				dirAnt = Move.ABAJO;
-			}
 			navesPorMover = numNaves;
 		}
-		
 		computerAction();
+		
 	}
 	
-	
+	public boolean canMove() {
+		return game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()  == 0;
+	}
 	
 	public boolean receiveMissileAttack(int dmg) {
 		getDamage(dmg);

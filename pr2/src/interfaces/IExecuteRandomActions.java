@@ -13,4 +13,8 @@ public interface IExecuteRandomActions {
 		return game.getRandom().nextDouble() < game.getLevel().getShootFrequency();	
 	}
 	
+	static boolean canGenerateRandomExplosiveAlien(Game game){
+		return game.getRandom().nextDouble() < game.getLevel().getTurnExplodeFrequency();	
+	}
+	
 }

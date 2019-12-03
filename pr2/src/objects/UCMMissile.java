@@ -11,7 +11,6 @@ public class UCMMissile extends Weapon{
 
 	@Override
 	public void computerAction() {
-		move();
 	}
 
 	@Override
@@ -32,9 +31,7 @@ public class UCMMissile extends Weapon{
 
 	@Override
 	public void update() {
-
-		
-		
+		move();
 	}
 	
 	@Override

@@ -6,12 +6,15 @@ import board.BoardInitializer;
 import board.GameObjectBoard;
 import objects.AlienShip;
 import objects.GameObject;
+import objects.Shockwave;
 import objects.UCMShip;
 import interfaces.IPlayerController;
 
 public class Game implements IPlayerController{
 	public final static int DIM_X = 7;
 	public final static int DIM_Y = 8;
+	
+	public static boolean shockwave;
 
 	private int currentCycle;
 	private Random rand;
@@ -39,6 +42,7 @@ public class Game implements IPlayerController{
 		board = initializer.initialize(this, level);
 		player = new UCMShip(this, DIM_X, DIM_Y / 2, 3);
 		board.add(player);
+		shockwave = false;
 		doExit = false;
 	}
 
@@ -101,11 +105,7 @@ public class Game implements IPlayerController{
 		str += "Remaining aliens: "/* + (destroyerShipList.getNumD() + regularShipList.getNumR()) */ + " \n";	
 		str += "ShockWave: ";
 		
-			/*if(shockwave) {
-				str += "Si";
-			}else {
-				str += "No";
-			}*/
+			
 			
 		
 		return str;
@@ -143,9 +143,8 @@ public class Game implements IPlayerController{
 
 	@Override
 	public void enableShockWave() {
-
-		
-		
+		addObject(new Shockwave(this,0,0,1));
+		shockwave = true;
 	}
 
 	@Override

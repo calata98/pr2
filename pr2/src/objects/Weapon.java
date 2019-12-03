@@ -11,13 +11,10 @@ public abstract class Weapon extends GameObject {
 	@Override
 	public boolean performAttack(GameObject other) {
 		
-		if(this.isAlive() && other.isAlive()) {
+		if(other != null && this.isAlive() && other.isAlive()) {
 			if(other.isOnPosition(x, y)) {
 				if(this instanceof Bomb) {
 					other.receiveBombAttack(live);
-				}
-				if(this instanceof Shockwave ) {
-					other.receiveShockWaveAttack(live);
 				}
 				if(this instanceof UCMMissile ) {
 					other.receiveMissileAttack(live);

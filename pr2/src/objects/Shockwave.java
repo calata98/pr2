@@ -23,7 +23,8 @@ public class Shockwave extends Weapon{
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
+
+		
 		
 	}
 
@@ -37,6 +38,15 @@ public class Shockwave extends Weapon{
 	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public boolean performAttack(GameObject other) {
+		if(Game.shockwave) {
+			return true;
+		}
+		
+		return false;
 	}
 
 }

@@ -16,10 +16,6 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		super(game, x, y, live);
 		this.enabled = false;
 	}
-
-	public boolean getEnabled() {
-		return enabled;
-	}
 	
 	@Override
 	public void move() {
@@ -31,6 +27,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		
 		if(IExecuteRandomActions.canGenerateRandomOvni(game) && !enabled) {
 			enabled = true;
+			live = 1;
 		}
 
 		if(enabled) {
@@ -41,6 +38,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	@Override
 	public void onDelete() {
 		this.enabled = false;
+		game.enableShockWave();
 	}
 
 	@Override
@@ -58,8 +56,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		computerAction();
 	}
 
 }
