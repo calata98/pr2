@@ -20,9 +20,9 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 	@Override
 	public void computerAction() {
 		allDead = false;
-		naveExplosivaCreada = false;
 		
-		if(bomba != null && !game.isOnBoard(bomba.x, bomba.y)) {
+		
+		if(bomba != null && (!game.isOnBoard(bomba.x, bomba.y) || !bomba.isAlive())) {
 			game.removeObject(bomba);
 			bomba = null;
 		}

@@ -11,7 +11,6 @@ public abstract class AlienShip extends EnemyShip{
 	protected static boolean allDead;
 	protected static int navesPorMover;
 	protected static int numNaves;
-	protected static boolean naveExplosivaCreada;
 	
 	public AlienShip() {
 		
@@ -51,13 +50,14 @@ public abstract class AlienShip extends EnemyShip{
 	@Override
 	public void onDelete() {
 		numNaves--;
+		navesPorMover--;
+		game.setNumNaves(numNaves);
 	}
 	
 	@Override
 	public void update() {
 		
-		
-			navesPorMover--;
+		navesPorMover--;
 		
 		switch(AlienShip.estado) {
 		
@@ -109,17 +109,18 @@ public abstract class AlienShip extends EnemyShip{
 		
 	}
 	
-	public boolean canMove() {
+	public boolean canMove() { 
 		return game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()  == 0;
 	}
 	
-	public boolean receiveMissileAttack(int dmg) {
-		getDamage(dmg);
+	
+	@Override
+	public boolean receiveShockWaveAttack(int dmg) {
 		return true;
 	}
 	
 	public static boolean allDead() {
-		return false;
+		return numNaves <= 0;
 	}
 	
 	public static boolean haveLanded() {

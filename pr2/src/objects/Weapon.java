@@ -12,16 +12,16 @@ public abstract class Weapon extends GameObject {
 	public boolean performAttack(GameObject other) {
 		
 		if(other != null && this.isAlive() && other.isAlive()) {
-			if(other.isOnPosition(x, y)) {
-				if(this instanceof Bomb) {
-					other.receiveBombAttack(live);
+				if(this instanceof Bomb && other.receiveBombAttack(live)) {
+					other.getDamage(live);
+					live--;
 				}
-				if(this instanceof UCMMissile ) {
-					other.receiveMissileAttack(live);
+				if(this instanceof UCMMissile && other.receiveMissileAttack(live)) {
+					other.getDamage(live);
+					live--;
 				}
-				live -= 1;
+				
 				return true;
-			}
 		}
 		
 		return false;

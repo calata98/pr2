@@ -49,6 +49,7 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	
 	protected void setGame(Game game) {
 		this.game = game;
+		game.setNumNaves(numNaves);
 	}
 	
 	protected void setLive(int live) {

@@ -11,6 +11,7 @@ public class ExplosiveAlien extends RegularAlien {
 	
 	public ExplosiveAlien() {
 		numNaves++;
+		navesPorMover++;
 	}
 
 	@Override
@@ -22,15 +23,16 @@ public class ExplosiveAlien extends RegularAlien {
 
 	@Override
 	public void onDelete() {
-
 		numNaves--;
-		
-
 	}
 
 	@Override
 	public String toString() {
 		return "E[" + live + "]";
+	}
+	
+	private void explosion() {
+		
 	}
 
 }

@@ -15,6 +15,8 @@ public class Game implements IPlayerController{
 	public final static int DIM_Y = 8;
 	
 	public static boolean shockwave;
+	
+	private int numNaves;
 
 	private int currentCycle;
 	private Random rand;
@@ -43,6 +45,7 @@ public class Game implements IPlayerController{
 		player = new UCMShip(this, DIM_X, DIM_Y / 2, 3);
 		board.add(player);
 		shockwave = false;
+		numNaves = level.getNumDestroyerAliens() + level.getNumRegularAliens();
 		doExit = false;
 	}
 
@@ -102,7 +105,7 @@ public class Game implements IPlayerController{
 		str += "Life: " + player.getLive() + " \n";
 		str += "Number of cycles: " + currentCycle + " \n";
 		str += "Points: " + points + " \n";
-		str += "Remaining aliens: "/* + (destroyerShipList.getNumD() + regularShipList.getNumR()) */ + " \n";	
+		str += "Remaining aliens: " + numNaves + " \n";	
 		str += "ShockWave: ";
 		
 			
@@ -132,8 +135,11 @@ public class Game implements IPlayerController{
 
 	@Override
 	public boolean shockWave() {
-		// TODO Auto-generated method stub
-		return false;
+		if(shockwave) {
+			board.shockwave();
+		}
+		
+		return shockwave;
 	}
 
 	@Override
@@ -152,6 +158,10 @@ public class Game implements IPlayerController{
 
 		
 		
+	}
+	
+	public void setNumNaves(int numNaves) {
+		this.numNaves = numNaves;
 	}
 	
 	public int getCurrentCycle() {

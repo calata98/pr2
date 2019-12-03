@@ -35,7 +35,7 @@ public class UCMShip extends Ship{
 	}
 	
 	public boolean shoot() {
-		if(misil != null && (!game.isOnBoard(x,y) || !misil.isAlive())) {
+		if(misil != null && !misil.isAlive()) {
 			misil = null;
 		}
 		if(misil == null) {
@@ -43,7 +43,6 @@ public class UCMShip extends Ship{
 			game.addObject(misil);
 			return true;
 		}
-		
 		return false;
 	}
 	
@@ -60,13 +59,15 @@ public class UCMShip extends Ship{
 	@Override
 	public void computerAction() {
 
-		
+		if(misil != null && !misil.isAlive()) {
+			misil = null;
+			game.removeObject(misil);
+		}
 		
 	}
 	
 	@Override
 	public boolean receiveBombAttack(int damage) {
-		this.live -= 1;
 		return true;
 	}
 	

@@ -29,10 +29,16 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 			enabled = true;
 			live = 1;
 		}
-
 		if(enabled) {
 			move();
 		}
+		
+		if(this.isOut()) {
+			enabled = false;
+			y = 9;
+		}
+		
+		
 	}
 
 	@Override

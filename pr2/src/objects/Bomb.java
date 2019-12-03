@@ -14,7 +14,6 @@ public class Bomb extends Weapon {
 		
 	}
 	public boolean receiveMissileAttack(int dmg) {
-		live -= 1;
 		return true;
 	}
 
@@ -36,9 +35,7 @@ public class Bomb extends Weapon {
 	}
 	@Override
 	public void update() {
-		
 		move();
-		
 	}
 
 }

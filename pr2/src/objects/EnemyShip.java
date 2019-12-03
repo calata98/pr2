@@ -12,6 +12,9 @@ public abstract class EnemyShip extends Ship{
 		super(game, x, y, live);
 	}
 	
-	
+	@Override
+	public boolean receiveMissileAttack(int dmg) {
+		return true;
+	}
 
 }

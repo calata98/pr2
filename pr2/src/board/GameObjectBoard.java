@@ -2,12 +2,15 @@ package board;
 
 import objects.GameObject;
 import objects.Ovni;
+import objects.Shockwave;
 import objects.UCMShip;
 
 public class GameObjectBoard {
 
 	private GameObject[] objects;
 	private int currentObjects;
+	
+	
 	
 	public GameObjectBoard (int width, int height) {
 		objects = new GameObject [30];
@@ -64,19 +67,20 @@ public class GameObjectBoard {
 	public void update() {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null) {
+				checkAttacks(objects[i]);
 				objects[i].update();
 				checkAttacks(objects[i]);
-				removeDead();
 			}
 		}
-		
+		removeDead();
 	}
 	
 	private void checkAttacks(GameObject object) {
-			GameObject aux = getObjectInPosition(object.getX(), object.getY());
-			if(aux != object) {
-				object.performAttack(aux);
+		for(int i = 0; i < objects.length;i++) {
+			if(objects[i] != null && objects[i] !=  object && objects[i].isOnPosition(object.getX(), object.getY())) {
+				object.performAttack(objects[i]);
 			}
+		}
 	}
 	
 	public void computerAction() {
@@ -87,13 +91,26 @@ public class GameObjectBoard {
 	private void removeDead() {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && !objects[i].isAlive()) {
+				System.out.println(objects[i]);
 				if(!(objects[i] instanceof UCMShip) && !(objects[i] instanceof Ovni)) {
 					remove(objects[i]);
+					System.out.println("¿¿¿");
 				}else {
+					System.out.println("??");
 					objects[i].onDelete();
 				}
 			}
 		}
+	}
+	
+	public void shockwave() {
+		
+		for(int i = 0; i < objects.length; i++) {
+			if(!(objects[i] instanceof Shockwave) && objects[i].receiveShockWaveAttack(1)){
+				objects[i].getDamage(1);
+			}
+		}
+		
 	}
 
 	public String toString(int x, int y) {

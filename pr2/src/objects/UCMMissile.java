@@ -15,13 +15,17 @@ public class UCMMissile extends Weapon{
 
 	@Override
 	public void onDelete() {
-		// TODO Auto-generated method stub
+
+		
 		
 	}
 
 	@Override
 	public void move() {
 		x -= 1;
+		if(x < 0) {
+			live = 0;
+		}
 	}
 
 	@Override
@@ -36,7 +40,6 @@ public class UCMMissile extends Weapon{
 	
 	@Override
 	public boolean receiveBombAttack(int damage) {
-		this.live -= 1;
 		return true;
 	}
 }
