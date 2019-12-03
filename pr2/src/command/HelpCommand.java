@@ -12,8 +12,7 @@ public class HelpCommand extends Command {
 		System.out.println("The available commands are:");
 		CommandGenerator.commandHelp();
 		System.out.println("");
-		System.out.print("Set command > ");
-		return false;
+		return true;
 	}
 	public Command parse(String[] commandWords) {
 		Command command=null;

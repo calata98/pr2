@@ -8,7 +8,7 @@ import objects.UCMShip;
 public class GameObjectBoard {
 
 	private GameObject[] objects;
-	private int currentObjects;
+	private int currentObjects = 1;
 	
 	
 	
@@ -91,12 +91,9 @@ public class GameObjectBoard {
 	private void removeDead() {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && !objects[i].isAlive()) {
-				System.out.println(objects[i]);
 				if(!(objects[i] instanceof UCMShip) && !(objects[i] instanceof Ovni)) {
 					remove(objects[i]);
-					System.out.println("¿¿¿");
 				}else {
-					System.out.println("??");
 					objects[i].onDelete();
 				}
 			}
@@ -106,12 +103,26 @@ public class GameObjectBoard {
 	public void shockwave() {
 		
 		for(int i = 0; i < objects.length; i++) {
-			if(!(objects[i] instanceof Shockwave) && objects[i].receiveShockWaveAttack(1)){
+			if(objects[i] != null && !(objects[i] instanceof Shockwave) && objects[i].receiveShockWaveAttack(1)){
 				objects[i].getDamage(1);
 			}
 		}
 		
 	}
+	
+	public String list() {
+		String str = "";
+		
+		for(int i = 0; i < objects.length; i++) {
+			if(objects[i] != null && objects[i].list() != null) {
+				str += objects[i].list();
+				str += "\n";
+			}
+		}
+		return str;
+	}
+	
+	
 
 	public String toString(int x, int y) {
 		if(getObjectInPosition(x,y) != null) {

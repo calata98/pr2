@@ -6,7 +6,7 @@ import interfaces.IExecuteRandomActions;
 public class Ovni extends EnemyShip implements IExecuteRandomActions{
 
 	private boolean enabled;
-	private int points = 25;
+	protected int points = 25;
 	
 	public Ovni() {
 		
@@ -44,6 +44,7 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 	@Override
 	public void onDelete() {
 		this.enabled = false;
+		live = 1;
 		game.enableShockWave();
 	}
 
@@ -56,8 +57,9 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		}
 	}
 	
-	public int getPoints() {
-		return points;
+	@Override
+	public String list() {
+		return "[O]vni: Points: " + points + " -  Harm: 0 - Shield: " + live;
 	}
 
 	@Override

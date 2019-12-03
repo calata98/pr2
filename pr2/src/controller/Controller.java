@@ -2,8 +2,11 @@ package controller;
 
 import java.util.Scanner;
 
+import command.BuyMissileCommand;
 import command.Command;
 import command.CommandGenerator;
+import command.HelpCommand;
+import command.ListCommand;
 import game.Game;
 import Printers.BoardPrinter;
 
@@ -17,17 +20,6 @@ public class Controller {
 		this.game = game;
 		in = new Scanner(System.in);
 	}
-	/*private void gameOver() {
-		System.out.println("Aliens win");
-		System.exit(0);
-	}
-	
-	private void win() {
-		System.out.println("Player wins");
-		System.exit(0);
-	}*/
-
-	
 
 	public void run() {
 		BoardPrinter draw;
@@ -41,11 +33,13 @@ public class Controller {
 
 			if (command != null) {
 				if (command.execute(game)) {
-					game.update();
-					System.out.println(game.infoToString());
-					draw = new BoardPrinter(game, 8, 9);
-					System.out.println(draw.toString());
-					System.out.println("Command > ");
+					if(!(command instanceof HelpCommand) && !(command instanceof ListCommand) && !(command instanceof BuyMissileCommand)) {
+						game.update();
+						System.out.println(game.infoToString());
+						draw = new BoardPrinter(game, 8, 9);
+						System.out.println(draw.toString());
+						System.out.println("Command > ");
+					}
 				}else {
 					System.out.format("COMANDO ERRRONEO\n");
 					System.out.println("Command > ");
@@ -59,11 +53,5 @@ public class Controller {
 			}
 		}
 		System.out.println(game.getWinnerMessage());
-		/*if(game.win()) {
-			
-			win();
-		}else {
-			gameOver();
-		}*/
 	}
 }

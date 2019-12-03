@@ -15,6 +15,7 @@ public class Game implements IPlayerController{
 	public final static int DIM_Y = 8;
 	
 	public static boolean shockwave;
+	private int numSuperMisiles;
 	
 	private int numNaves;
 
@@ -108,6 +109,12 @@ public class Game implements IPlayerController{
 		str += "Remaining aliens: " + numNaves + " \n";	
 		str += "ShockWave: ";
 		
+			if(shockwave) {
+				str += "Si\n";
+			}else {
+				str += "No\n";
+			}
+		str += "SuperMissiles : " + numSuperMisiles;
 			
 			
 		
@@ -129,8 +136,12 @@ public class Game implements IPlayerController{
 	}
 
 	@Override
-	public boolean shootMissile() {
-		return player.shoot();
+	public boolean shootMissile(boolean supermisil) {
+		if(supermisil && numSuperMisiles == 0) {
+			return false;
+		}else {
+			return player.shoot(supermisil);
+		}
 	}
 
 	@Override
@@ -144,20 +155,22 @@ public class Game implements IPlayerController{
 
 	@Override
 	public void receivePoints(int points) {
-		
+		this.points += points;
 	}
 
 	@Override
 	public void enableShockWave() {
-		addObject(new Shockwave(this,0,0,1));
+		addObject(new Shockwave(this,-1,-1,1));
 		shockwave = true;
 	}
 
 	@Override
-	public void enableMissile() {
-
-		
-		
+	public boolean enableMissile() {
+		if(points >= 20) {
+			numSuperMisiles++;
+			return true;
+		}
+		return false;
 	}
 	
 	public void setNumNaves(int numNaves) {
@@ -168,7 +181,8 @@ public class Game implements IPlayerController{
 		return currentCycle;
 	}
 	
+	public String list() {
+		return board.list();
+	}
 	
-	
-	// TODO implementar los metodos del interfaz IPlayerController
 }

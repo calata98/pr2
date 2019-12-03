@@ -1,9 +1,10 @@
 package Printers;
 
 import game.Game;
+import interfaces.GamePrinter;
 import util.MyStringUtils;
 
-public class BoardPrinter extends GamePrinter{
+public class BoardPrinter implements GamePrinter{
 			
 		int numRows; 
 		int numCols;
@@ -49,6 +50,24 @@ public class BoardPrinter extends GamePrinter{
 					str.append(lineDelimiter);
 			}
 			return str.toString();
+		}
+
+		@Override
+		public String toString(Game game) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public GamePrinter parse(String name) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String helpText() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 	}
 	

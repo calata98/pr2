@@ -42,4 +42,9 @@ public class UCMMissile extends Weapon{
 	public boolean receiveBombAttack(int damage) {
 		return true;
 	}
+
+	@Override
+	public String list() {
+		return null;
+	}
 }

@@ -5,13 +5,16 @@ import interfaces.IExecuteRandomActions;
 
 public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 
+	
+	
 	public RegularAlien() {
-		
+		points = 5;
 	}
 	
 	
 	public RegularAlien(Game game, int x, int y, int live) {
 		super(game, x, y, live);
+		points = 5;
 	}
 
 	@Override
@@ -26,6 +29,7 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 		allDead = false;
 		
 		if(IExecuteRandomActions.canGenerateRandomExplosiveAlien(game)) {
+			explodeCreated = true;
 			game.removeObject(this);
 			ExplosiveAlien aux = new ExplosiveAlien();
 			aux.setGame(game);
@@ -33,6 +37,8 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 			aux.setY(y);
 			aux.setLive(2);
 			game.addObject(aux);
+		}else {
+			explodeCreated = false;
 		}
 
 		
@@ -55,4 +61,10 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	protected void setLive(int live) {
 		this.live = live;
 	}
+	
+	@Override
+	public String list() {
+		return "[R]egular ship: Points: " + points + " -  Harm: 0 - Shield: " + live;
+	}
+	
 }

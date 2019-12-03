@@ -17,7 +17,11 @@ public abstract class Weapon extends GameObject {
 					live--;
 				}
 				if(this instanceof UCMMissile && other.receiveMissileAttack(live)) {
-					other.getDamage(live);
+					if(this instanceof Supermissile) {
+						other.getDamage(2);
+					}else {
+						other.getDamage(live);
+					}
 					live--;
 				}
 				

@@ -34,12 +34,17 @@ public class UCMShip extends Ship{
 		}
 	}
 	
-	public boolean shoot() {
+	public boolean shoot(boolean supermisil) {
 		if(misil != null && !misil.isAlive()) {
 			misil = null;
 		}
 		if(misil == null) {
-			misil = new UCMMissile(game,x,y,1);
+			if(supermisil) {
+				misil = new Supermissile(game,x,y,1);
+			}else {
+				misil = new UCMMissile(game,x,y,1);
+			}
+			
 			game.addObject(misil);
 			return true;
 		}
@@ -85,6 +90,10 @@ public class UCMShip extends Ship{
 		
 	}
 	
+	@Override
+	public String list() {
+		return "^___^:  Harm: 1 - Shield: " + live;
+	}
 	
 	
 }

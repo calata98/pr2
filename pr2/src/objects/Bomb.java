@@ -38,4 +38,10 @@ public class Bomb extends Weapon {
 		move();
 	}
 
+	@Override
+	public String list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

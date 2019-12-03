@@ -11,6 +11,8 @@ public abstract class AlienShip extends EnemyShip{
 	protected static boolean allDead;
 	protected static int navesPorMover;
 	protected static int numNaves;
+	protected static boolean explodeCreated;
+	protected int points;
 	
 	public AlienShip() {
 		
@@ -52,6 +54,9 @@ public abstract class AlienShip extends EnemyShip{
 		numNaves--;
 		navesPorMover--;
 		game.setNumNaves(numNaves);
+		if(!explodeCreated) {
+			game.receivePoints(points);
+		}
 	}
 	
 	@Override

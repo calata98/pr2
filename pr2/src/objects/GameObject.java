@@ -41,8 +41,8 @@ public abstract class GameObject implements IAttack {
 	}
 
 	public void getDamage (int damage) {
-		this.live -= damage;
-		//this.live = damage >= this.live ? 0 : this.live - damage;
+		//this.live -= damage;
+		this.live = damage >= this.live ? 0 : this.live - damage;
 	}
 	
 	public boolean isOut() {
@@ -55,4 +55,5 @@ public abstract class GameObject implements IAttack {
 	public abstract void onDelete();
 	public abstract void move();
 	public abstract String toString();
+	public abstract String list();
 }

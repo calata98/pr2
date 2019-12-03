@@ -10,6 +10,7 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 	
 	public DestroyerAlien(Game game, int x, int y, int live) {
 		super(game, x, y, live);
+		points = 10;
 	}
 	
 	@Override
@@ -21,7 +22,7 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 	public void computerAction() {
 		allDead = false;
 		
-		
+		explodeCreated = false;
 		if(bomba != null && (!game.isOnBoard(bomba.x, bomba.y) || !bomba.isAlive())) {
 			game.removeObject(bomba);
 			bomba = null;
@@ -34,9 +35,9 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 		
 	}
 	
-	
-	
-	
-	
+	@Override
+	public String list() {
+		return "[D]estroyer ship: Points: " + points + " -  Harm: 1 - Shield: " + live;
+	}
 
 }

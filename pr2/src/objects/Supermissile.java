@@ -2,7 +2,7 @@ package objects;
 
 import game.Game;
 
-public class Supermissile extends Weapon {
+public class Supermissile extends UCMMissile {
 
 	public Supermissile(Game game, int x, int y, int live) {
 		super(game, x, y, live);
@@ -10,33 +10,13 @@ public class Supermissile extends Weapon {
 	}
 
 	@Override
-	public void computerAction() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onDelete() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "OO";
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
+	public String list() {
+		return null;
 	}
 
 }

@@ -31,7 +31,7 @@ public class Shockwave extends Weapon{
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
@@ -47,6 +47,11 @@ public class Shockwave extends Weapon{
 		}
 		
 		return false;
+	}
+
+	@Override
+	public String list() {
+		return null;
 	}
 
 }

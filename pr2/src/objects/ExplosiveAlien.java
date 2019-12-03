@@ -21,10 +21,6 @@ public class ExplosiveAlien extends RegularAlien {
 
 	}
 
-	@Override
-	public void onDelete() {
-		numNaves--;
-	}
 
 	@Override
 	public String toString() {
