@@ -19,4 +19,8 @@ public class Supermissile extends UCMMissile {
 		return null;
 	}
 
+	@Override
+	public void onDelete() {
+		game.deleteSuperMisil();
+	}
 }

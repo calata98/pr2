@@ -14,8 +14,9 @@ public class Game implements IPlayerController{
 	public final static int DIM_X = 7;
 	public final static int DIM_Y = 8;
 	
-	public static boolean shockwave;
+	private static boolean shockwave;
 	private int numSuperMisiles;
+	private boolean superMisilComprado;
 	
 	private int numNaves;
 
@@ -86,8 +87,12 @@ public class Game implements IPlayerController{
 	}
 	
 	public void update() {
-		board.update();
-		currentCycle += 1;
+		if(!superMisilComprado) {
+			board.update();
+			currentCycle += 1;
+		}else {
+			superMisilComprado = false;
+		}
 	}
 	
 
@@ -152,6 +157,10 @@ public class Game implements IPlayerController{
 		
 		return shockwave;
 	}
+	
+	public boolean getShockWave() {
+		return shockwave;
+	}
 
 	@Override
 	public void receivePoints(int points) {
@@ -167,10 +176,19 @@ public class Game implements IPlayerController{
 	@Override
 	public boolean enableMissile() {
 		if(points >= 20) {
+			superMisilComprado = true;
 			numSuperMisiles++;
 			return true;
 		}
 		return false;
+	}
+	
+	public void explosion(int x, int y) {
+		board.explosion(x, y);
+	}
+	
+	public void deleteSuperMisil() {
+		numSuperMisiles--;
 	}
 	
 	public void setNumNaves(int numNaves) {

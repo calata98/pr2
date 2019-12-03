@@ -8,7 +8,6 @@ public abstract class AlienShip extends EnemyShip{
 	protected static String estado;
 	protected static boolean dirCambiada;
 	protected static boolean tierra;
-	protected static boolean allDead;
 	protected static int navesPorMover;
 	protected static int numNaves;
 	protected static boolean explodeCreated;

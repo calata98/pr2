@@ -42,7 +42,7 @@ public class Shockwave extends Weapon{
 	
 	@Override
 	public boolean performAttack(GameObject other) {
-		if(Game.shockwave) {
+		if(game.getShockWave()) {
 			return true;
 		}
 		

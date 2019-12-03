@@ -110,6 +110,25 @@ public class GameObjectBoard {
 		
 	}
 	
+	public void explosion(int x, int y) {
+		if(getObjectInPosition(x, y - 1) != null) 
+			getObjectInPosition(x, y - 1).getDamage(1);
+		if(getObjectInPosition(x, y + 1) != null)
+			getObjectInPosition(x, y + 1).getDamage(1);
+		if(getObjectInPosition(x - 1 , y - 1) != null)
+			getObjectInPosition(x - 1 , y - 1).getDamage(1);
+		if(getObjectInPosition(x - 1, y) != null)
+			getObjectInPosition(x - 1, y).getDamage(1);
+		if(getObjectInPosition(x - 1, y + 1) != null)
+			getObjectInPosition(x - 1, y + 1).getDamage(1);
+		if(getObjectInPosition(x + 1, y + 1) != null)
+			getObjectInPosition(x + 1, y + 1).getDamage(1);
+		if(getObjectInPosition(x + 1, y) != null)
+			getObjectInPosition(x + 1, y).getDamage(1);
+		if(getObjectInPosition(x + 1, y - 1) != null)
+			getObjectInPosition(x + 1, y - 1).getDamage(1);
+	}
+	
 	public String list() {
 		String str = "";
 		
@@ -125,6 +144,7 @@ public class GameObjectBoard {
 	
 
 	public String toString(int x, int y) {
+		removeDead();
 		if(getObjectInPosition(x,y) != null) {
 			return getObjectInPosition(x,y).toString();
 		}else {

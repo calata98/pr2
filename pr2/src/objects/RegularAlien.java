@@ -26,7 +26,6 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	
 	@Override
 	public void computerAction() {
-		allDead = false;
 		
 		if(IExecuteRandomActions.canGenerateRandomExplosiveAlien(game)) {
 			explodeCreated = true;
@@ -35,7 +34,7 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 			aux.setGame(game);
 			aux.setX(x);
 			aux.setY(y);
-			aux.setLive(2);
+			aux.setLive(live);
 			game.addObject(aux);
 		}else {
 			explodeCreated = false;

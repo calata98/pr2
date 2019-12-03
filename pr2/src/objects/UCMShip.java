@@ -35,6 +35,7 @@ public class UCMShip extends Ship{
 	}
 	
 	public boolean shoot(boolean supermisil) {
+		System.out.println(supermisil);
 		if(misil != null && !misil.isAlive()) {
 			misil = null;
 		}

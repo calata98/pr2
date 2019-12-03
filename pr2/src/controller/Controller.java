@@ -33,13 +33,14 @@ public class Controller {
 
 			if (command != null) {
 				if (command.execute(game)) {
-					if(!(command instanceof HelpCommand) && !(command instanceof ListCommand) && !(command instanceof BuyMissileCommand)) {
+					if(!(command instanceof HelpCommand) && !(command instanceof ListCommand)) {
 						game.update();
 						System.out.println(game.infoToString());
 						draw = new BoardPrinter(game, 8, 9);
 						System.out.println(draw.toString());
 						System.out.println("Command > ");
 					}
+					
 				}else {
 					System.out.format("COMANDO ERRRONEO\n");
 					System.out.println("Command > ");
