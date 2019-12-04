@@ -22,15 +22,14 @@ public class CommandGenerator {
 		Command command = null;
 		int i=0;
 		while(i<availableCommands.length) {
+			command=availableCommands[i].parse(commandWords);
 			if(command==null)
 			{
-			command=availableCommands[i].parse(commandWords);
-			i++;
+				i++;
 			}
 			else
 			{
 				return command;
-			
 			}
 		}
 		throw new CommandParseException("Unknown command");

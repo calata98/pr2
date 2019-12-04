@@ -16,7 +16,6 @@ public class Game implements IPlayerController{
 	
 	private static boolean shockwave;
 	private int numSuperMisiles;
-	private boolean superMisilComprado;
 	
 	private int numNaves;
 
@@ -93,7 +92,6 @@ public class Game implements IPlayerController{
 		if(update) {
 			board.update();
 			currentCycle += 1;
-			System.out.println(infoToString());
 		}
 	}
 	
@@ -178,7 +176,6 @@ public class Game implements IPlayerController{
 	@Override
 	public boolean enableMissile() {
 		if(player.getPoints() >= 20) {
-			superMisilComprado = true;
 			numSuperMisiles++;
 			return true;
 		}

@@ -43,6 +43,8 @@ public class BoardPrinter implements GamePrinter{
 			
 			StringBuilder str = new StringBuilder();
 			
+			str.append(game.infoToString());
+			
 			str.append(lineDelimiter);
 			
 			for(int i=0; i<numRows; i++) {

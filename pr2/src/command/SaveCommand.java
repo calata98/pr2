@@ -50,8 +50,6 @@ public class SaveCommand extends Command {
 		if(commandWords.length == 2 && commandWords[0].toLowerCase().equals("save")) {
 			command = new SaveCommand(commandWords[1]);
 		}
-	
-		
 		return command;
 	}
 }

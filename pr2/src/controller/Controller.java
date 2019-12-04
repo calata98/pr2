@@ -5,6 +5,11 @@ import java.util.Scanner;
 import Printers.PrinterTypes;
 import command.Command;
 import command.CommandGenerator;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.ListCommand;
+import command.ListPrintersCommand;
+import command.SaveCommand;
 import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import game.Game;
@@ -35,7 +40,8 @@ public class Controller {
 				if (command.execute(game)) {
 					printer =  game.getPrinter();
 					game.update();
-					if(game.getUpdate()) {
+					if(!(command instanceof HelpCommand) && !(command instanceof ListCommand) && !(command instanceof ListPrintersCommand) 
+							&& !(command instanceof SaveCommand) && !(command instanceof ExitCommand)) {
 						System.out.println(printer.getObject().toString(game));
 					}
 					game.setPrinter(PrinterTypes.BOARDPRINTER);
