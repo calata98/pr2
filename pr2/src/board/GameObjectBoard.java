@@ -8,16 +8,16 @@ import objects.UCMShip;
 public class GameObjectBoard {
 
 	private GameObject[] objects;
-	private int currentObjects = 1;
+	private int currentObjectsLength = 35;
 	
 	
 	
 	public GameObjectBoard (int width, int height) {
-		objects = new GameObject [30];
+		objects = new GameObject [currentObjectsLength];
 	}
 	
-	public int getCurrentObjects () {
-		return currentObjects;
+	public int getCurrentObjectsLength () {
+		return currentObjectsLength;
 	}
 	
 	public void add (GameObject object) {
@@ -27,7 +27,6 @@ public class GameObjectBoard {
 				break;
 			}
 		}
-		currentObjects++;
 	}
 	
 	private GameObject getObjectInPosition (int x, int y) {
@@ -38,28 +37,12 @@ public class GameObjectBoard {
 		}
 		return null;
 	}
-	
-	/*private int getIndex(int x, int y) {
-		boolean found = false;
-		int contador = 0;
-		while(!found) {
-			if(contador >= objects.length) {
-				return -1;
-			}
-			if(objects[contador] != null && objects[contador].isOnPosition(x, y)) {
-				found = true;
-			}
-			contador++;
-		}
-		return contador;
-	}*/
 
 	public void remove (GameObject object) {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && objects[i].equals(object)) {
 				objects[i].onDelete();
 				objects[i] = null;
-				currentObjects--;
 			}
 		}
 	}
@@ -73,7 +56,6 @@ public class GameObjectBoard {
 			}
 		}
 		removeDead();
-		System.out.println(currentObjects);
 	}
 	
 	private void checkAttacks(GameObject object) {
@@ -90,7 +72,6 @@ public class GameObjectBoard {
 	}
 	
 	private void removeDead() {
-		currentObjects = 0;
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && !objects[i].isAlive()) {
 				if(!(objects[i] instanceof UCMShip) && !(objects[i] instanceof Ovni)) {
@@ -98,9 +79,6 @@ public class GameObjectBoard {
 				}else {
 					objects[i].onDelete();
 				}
-			}
-			if(objects[i] != null) {
-				currentObjects++;
 			}
 		}
 	}
@@ -146,8 +124,15 @@ public class GameObjectBoard {
 		return str;
 	}
 	
-	public String getStringifyText(int i) {
-		return objects[i].getStringifyText();
+	public String getStringifyText() {
+		String str = "";
+		for(int i = 0; i < objects.length; i++) {
+			if(objects[i] != null && objects[i].getStringifyText() != null) {
+				str += objects[i].getStringifyText() + "\n";
+			}
+		}
+		
+		return str;
 	}
 
 	public String toString(int x, int y) {

@@ -1,14 +1,16 @@
 package command;
 
+import Printers.PrinterTypes;
 import game.Game;
 
 public class StringifyCommand extends Command {
 
 	public StringifyCommand() {
-		super("Stringify","Stringify","List","Prints the list of available ships. ");
+		super("Stringify","Stringify","Stringify","Prints the game stringified. ");
 	}
 	public boolean execute(Game game) {
-		
+		game.setPrinter(PrinterTypes.STRINGIFIER);
+		game.setUpdate(false);
 		return true;
 	}
 	public Command parse(String[] commandWords) {

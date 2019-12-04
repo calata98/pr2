@@ -2,11 +2,11 @@ package game;
 
 import java.util.Random;
 
+import Printers.PrinterTypes;
 import board.BoardInitializer;
 import board.GameObjectBoard;
 import objects.AlienShip;
 import objects.GameObject;
-import objects.Shockwave;
 import objects.UCMShip;
 import interfaces.IPlayerController;
 
@@ -23,6 +23,8 @@ public class Game implements IPlayerController{
 	private int currentCycle;
 	private Random rand;
 	private Level level;
+	private PrinterTypes printer;
+	private boolean update;
 
 	GameObjectBoard board;
 
@@ -48,6 +50,7 @@ public class Game implements IPlayerController{
 		shockwave = false;
 		numNaves = level.getNumDestroyerAliens() + level.getNumRegularAliens();
 		doExit = false;
+		printer = PrinterTypes.BOARDPRINTER;
 	}
 
 	public Random getRandom() {
@@ -86,11 +89,10 @@ public class Game implements IPlayerController{
 	}
 	
 	public void update() {
-		if(!superMisilComprado) {
+		if(update) {
 			board.update();
 			currentCycle += 1;
-		}else {
-			superMisilComprado = false;
+			System.out.println(infoToString());
 		}
 	}
 	
@@ -181,6 +183,14 @@ public class Game implements IPlayerController{
 		return false;
 	}
 	
+	public PrinterTypes getPrinter() {
+		return printer;
+	}
+
+	public void setPrinter(PrinterTypes printer) {
+		this.printer = printer;
+	}
+
 	public void explosion(int x, int y) {
 		board.explosion(x, y);
 	}
@@ -193,16 +203,24 @@ public class Game implements IPlayerController{
 		this.numNaves = numNaves;
 	}
 	
-	public int getCurrentObjects() {
-		return board.getCurrentObjects();
+	public int getCurrentObjectsLength() {
+		return board.getCurrentObjectsLength();
 	}
 	
 	public int getCurrentCycle() {
 		return currentCycle;
 	}
 	
-	public String getStringifyText(int i) {
-		return board.getStringifyText(i);
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+	
+	public boolean getUpdate() {
+		return update;
+	}
+	
+	public String getStringifyText() {
+		return  board.getStringifyText();
 	}
 	
 	public String list() {

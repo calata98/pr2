@@ -9,6 +9,7 @@ public class BuyMissileCommand extends Command {
 			super("BuyM", "supermisil","Buy Missile","if you have 20 points you can buy a supermissile that deals 2 of damage by that price.");
 		}
 	public boolean execute(Game game) {
+		game.setUpdate(false);
 		return game.enableMissile();
 	}
 	public Command parse(String[] commandWords) {

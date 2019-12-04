@@ -12,7 +12,9 @@ public class CommandGenerator {
 			new ShockwaveCommand(),
 			new ShootCommand(),
 			new BuyMissileCommand(),
-			new StringifyCommand()
+			new StringifyCommand(),
+			new ListPrintersCommand(),
+			new SaveCommand()
 			};
 	public static Command parseCommand(String[ ] commandWords) {
 		Command command=null;

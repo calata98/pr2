@@ -55,7 +55,6 @@ public class Shockwave extends Weapon{
 
 	@Override
 	public String getStringifyText() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

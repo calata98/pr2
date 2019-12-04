@@ -7,6 +7,7 @@ public class ListCommand extends Command {
 		super("List","l","List","Prints the list of available ships. ");
 	}
 	public boolean execute(Game game) {
+		game.setUpdate(false);
 		System.out.println(game.list());
 		return true;
 	}

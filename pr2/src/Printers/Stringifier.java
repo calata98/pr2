@@ -15,13 +15,7 @@ public class Stringifier implements GamePrinter{
 		str += "\n";
 		str += "G;" + game.getCurrentCycle() + "\n";
 		str += "L;" + game.getLevel() + "\n";
-		
-		for(int i = 0; i < game.getCurrentObjects(); i++) {
-			if(game.getStringifyText(i) != null) {
-				str += game.getStringifyText(i) + "\n";
-			}
-		}
-		
+		str += game.getStringifyText();
 		return str;
 	}
 
