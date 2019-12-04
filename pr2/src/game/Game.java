@@ -50,6 +50,7 @@ public class Game implements IPlayerController{
 		shockwave = false;
 		numNaves = level.getNumDestroyerAliens() + level.getNumRegularAliens();
 		doExit = false;
+		update = true;
 		printer = PrinterTypes.BOARDPRINTER;
 	}
 
@@ -137,9 +138,10 @@ public class Game implements IPlayerController{
 	@Override
 	public boolean move(String direccion,int numCells) {
 		player.setMove(direccion, numCells);
-		player.move();
-		return true;
+		return player.moveUCM();
 	}
+	
+
 
 	@Override
 	public boolean shootMissile(boolean supermisil) {

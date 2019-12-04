@@ -1,5 +1,7 @@
 package command;
 
+import exceptions.CommandParseException;
+
 public class CommandGenerator {
 
 	private static Command[] availableCommands = {
@@ -16,14 +18,23 @@ public class CommandGenerator {
 			new ListPrintersCommand(),
 			new SaveCommand()
 			};
-	public static Command parseCommand(String[ ] commandWords) {
-		Command command=null;
+	public static Command parseCommand(String[ ] commandWords)throws CommandParseException {
+		Command command = null;
 		int i=0;
-		while(command==null&&i<availableCommands.length) {
+		while(i<availableCommands.length) {
+			if(command==null)
+			{
 			command=availableCommands[i].parse(commandWords);
 			i++;
+			}
+			else
+			{
+				return command;
+			
+			}
 		}
-		return command;
+		throw new CommandParseException("Unknown command");
+		
 	}
 	public static void commandHelp() {
 		for(int i=0;i<availableCommands.length;i++) {

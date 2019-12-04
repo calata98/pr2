@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import Printers.PrinterTypes;
+import exceptions.CommandParseException;
 import game.Game;
 
 public class SaveCommand extends Command {
@@ -44,11 +45,13 @@ public class SaveCommand extends Command {
 		game.setUpdate(false);
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException{
 		Command command=null;
 		if(commandWords.length == 2 && commandWords[0].toLowerCase().equals("save")) {
 			command = new SaveCommand(commandWords[1]);
 		}
+	
+		
 		return command;
 	}
 }

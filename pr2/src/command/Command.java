@@ -1,5 +1,7 @@
 package command;
 
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
 import game.Game;
 
 public abstract class Command {
@@ -18,9 +20,9 @@ public abstract class Command {
 		this.details = details;
 		this.help = help;
 		}
-		public abstract boolean execute(Game game);
+		public abstract boolean execute(Game game) throws CommandExecuteException;;
 		
-		public abstract Command parse(String[] commandWords);
+		public abstract Command parse(String[] commandWords)throws CommandParseException;
 		
 		protected boolean matchCommandName(String name) {
 		return this.shortcut.equalsIgnoreCase(name) ||

@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandParseException;
 import game.Game;
 
 public class ShockwaveCommand extends Command {
@@ -11,9 +12,8 @@ public class ShockwaveCommand extends Command {
 		game.shockWave();
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords){
 		Command command=null;
-		
 		if(commandWords[0].toLowerCase().equals("w")||commandWords[0].toLowerCase().equals("shockwave")) {
 			command = new ShockwaveCommand();
 		}

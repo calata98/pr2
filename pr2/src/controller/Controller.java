@@ -2,17 +2,13 @@ package controller;
 
 import java.util.Scanner;
 
-import command.BuyMissileCommand;
+import Printers.PrinterTypes;
 import command.Command;
 import command.CommandGenerator;
-import command.HelpCommand;
-import command.ListCommand;
-import command.StringifyCommand;
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
 import game.Game;
-import interfaces.GamePrinter;
-import Printers.BoardPrinter;
-import Printers.PrinterTypes;
-import Printers.Stringifier;
+
 
 public class Controller {
 
@@ -32,6 +28,7 @@ public class Controller {
 		System.out.println(printer.getObject().toString(game));
 		System.out.println("Command > ");
 		while (!end) {
+			try {
 			String[] words = in.nextLine().toLowerCase().trim().split ("\\s+");
 			Command command = CommandGenerator.parseCommand(words);
 			if (command != null) {
@@ -43,12 +40,20 @@ public class Controller {
 					}
 					game.setPrinter(PrinterTypes.BOARDPRINTER);
 					game.setUpdate(true);
-				}else {
-					System.out.format("COMANDO ERRRONEO\n");
 				}
-			}else {
-				System.out.format("COMANDO ERRRONEO\n");
 			}
+			}catch(CommandParseException e) {
+					System.err.println(e.getMessage());
+					System.out.println();
+					
+				}catch(CommandExecuteException e) {
+					System.err.println(e.getMessage());
+					System.out.println();
+					
+				}catch(NumberFormatException e) {
+					System.err.println("Invalid argument for move command, number expected");
+					System.out.println();
+				}
 			System.out.println("Command > ");
 			if(game.isFinished()) {
 				end = true;

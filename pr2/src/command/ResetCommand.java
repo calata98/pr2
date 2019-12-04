@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandParseException;
 import game.Game;
 
 public class ResetCommand extends Command {
@@ -11,12 +12,13 @@ public class ResetCommand extends Command {
 		game.reset();
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException{
 		Command command=null;
-		
 		if(commandWords[0].toLowerCase().equals("r")||commandWords[0].toLowerCase().equals("reset")) {
 			command = new ResetCommand();
 		}
+
+		
 		return command;	
 	}
 }

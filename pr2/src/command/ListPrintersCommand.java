@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandParseException;
 import game.Game;
 
 public class ListPrintersCommand extends Command {
@@ -11,9 +12,8 @@ public class ListPrintersCommand extends Command {
 		game.setUpdate(false);
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords)throws CommandParseException{
 		Command command=null;
-		
 		if(commandWords.length == 1 && commandWords[0].toLowerCase().equals("listprinters")){
 			command = new ListPrintersCommand();
 		}

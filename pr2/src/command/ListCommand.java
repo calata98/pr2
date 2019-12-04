@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandParseException;
 import game.Game;
 
 public class ListCommand extends Command {
@@ -11,12 +12,12 @@ public class ListCommand extends Command {
 		System.out.println(game.list());
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException{
 		Command command=null;
-		
 		if(commandWords[0].toLowerCase().equals("l")||commandWords[0].toLowerCase().equals("list")) {
 			command = new ListCommand();
 		}
+	
 		return command;	
 	}
 }

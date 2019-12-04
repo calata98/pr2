@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandParseException;
 import game.Game;
 
 public class UpdateCommand extends Command {
@@ -10,11 +11,12 @@ public class UpdateCommand extends Command {
 	public boolean execute(Game game) {	
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException{
 		Command command=null;
 		if(commandWords[0].toLowerCase().equals("")||commandWords[0].toLowerCase().equals("n")||commandWords[0].toLowerCase().equals("none")) {
 			command = new UpdateCommand();
 		}
+		
 		return command;	
 	}
 }

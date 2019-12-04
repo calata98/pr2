@@ -1,6 +1,7 @@
 package command;
 
 import Printers.PrinterTypes;
+import exceptions.CommandParseException;
 import game.Game;
 
 public class StringifyCommand extends Command {
@@ -13,12 +14,12 @@ public class StringifyCommand extends Command {
 		game.setUpdate(false);
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords)throws CommandParseException{
 		Command command=null;
-		
 		if(commandWords.length == 1 && commandWords[0].toLowerCase().equals("stringify")) {
 			command = new StringifyCommand();
 		}
+		
 		return command;	
 	}
 

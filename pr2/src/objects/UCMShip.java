@@ -26,6 +26,13 @@ public class UCMShip extends Ship{
 		
 	}
 
+	public boolean moveUCM () {
+		if ((direccion.equals("left") && (y - numCeldas) >= 0) || (direccion.equals("right") && (y + numCeldas) <= Game.DIM_Y)) {
+			move();
+			return true;
+		}
+		return false;
+	}
 	@Override
 	public void move() {
 		if(direccion.equals("right")) {
@@ -36,7 +43,6 @@ public class UCMShip extends Ship{
 	}
 	
 	public boolean shoot(boolean supermisil) {
-		System.out.println(supermisil);
 		if(misil != null && !misil.isAlive()) {
 			misil = null;
 		}

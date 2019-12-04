@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandParseException;
 import game.Game;
 
 public class HelpCommand extends Command {
@@ -15,11 +16,12 @@ public class HelpCommand extends Command {
 		game.setUpdate(false);
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException{
 		Command command=null;
 		if(commandWords[0].toLowerCase().equals("h")||commandWords[0].toLowerCase().equals("help")) {
 			command = new HelpCommand();
 		}
+		
 		return command;
 	}
 }

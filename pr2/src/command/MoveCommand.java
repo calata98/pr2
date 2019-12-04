@@ -1,5 +1,7 @@
 package command;
 
+import exceptions.CommandExecuteException;
+import exceptions.CommandParseException;
 import game.Game;
 
 public class MoveCommand extends Command {
@@ -13,17 +15,31 @@ private String m;
 		n=num;
 		this.m=m;
 	}
-	public boolean execute(Game game) {
-		game.move(m,n);
+	public boolean execute(Game game) throws CommandExecuteException {
+		
+		if(!game.move(m,n)) {
+			throw new CommandExecuteException("fuera tablero");
+		}
 		return true;
 	}
-	public Command parse(String[] commandWords) {
+	public Command parse(String[] commandWords) throws CommandParseException{
 		Command command=null;
-		if ((commandWords[0].equals("move") || commandWords[0].equals("m")) && commandWords.length == 3 && (commandWords[1].equals("left") || commandWords[1].equals("right"))
+	if(!commandWords[0].equals("move") && !commandWords[0].equals("m")) {
+		return null;
+	}
+	else if(commandWords.length!=3) {
+		throw new CommandParseException("Incorrect number of arguments for move command: move <left|right><1|2>");
+	}
+	else if ((commandWords[0].equals("move") || commandWords[0].equals("m")) && commandWords.length == 3 && (commandWords[1].equals("left") || commandWords[1].equals("right"))
 				&& (commandWords[2].equals("1") || commandWords[2].equals("2")))
 		 		{
+				
 					command = new MoveCommand(commandWords[1],Integer.parseInt(commandWords[2]));
+					return command;
 				}
-		return command;
+		 else {
+		 
+		 throw new CommandParseException("Failed to move UCM "+ commandWords[1] +" "+ commandWords[2]);
+	}
 	}
 }
