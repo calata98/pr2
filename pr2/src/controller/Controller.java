@@ -7,8 +7,12 @@ import command.Command;
 import command.CommandGenerator;
 import command.HelpCommand;
 import command.ListCommand;
+import command.StringifyCommand;
 import game.Game;
+import interfaces.GamePrinter;
 import Printers.BoardPrinter;
+import Printers.PrinterTypes;
+import Printers.Stringifier;
 
 public class Controller {
 
@@ -23,9 +27,10 @@ public class Controller {
 
 	public void run() {
 		BoardPrinter draw;
+		Stringifier serializador;
 		System.out.println(game.infoToString());
-		draw = new BoardPrinter(game, 8, 9);
-		System.out.println(draw.toString());
+		draw = new BoardPrinter(Game.DIM_X + 1, Game.DIM_Y + 1);
+		System.out.println(draw.toString(game));
 		System.out.println("Command > ");
 		while (!end) {
 			String[] words = in.nextLine().toLowerCase().trim().split ("\\s+");
@@ -33,14 +38,18 @@ public class Controller {
 
 			if (command != null) {
 				if (command.execute(game)) {
-					if(!(command instanceof HelpCommand) && !(command instanceof ListCommand)) {
-						game.update();
-						System.out.println(game.infoToString());
-						draw = new BoardPrinter(game, 8, 9);
-						System.out.println(draw.toString());
-						System.out.println("Command > ");
+					if(command instanceof StringifyCommand) {
+						serializador = new Stringifier();
+						System.out.println(serializador.toString(game));
+					}else {
+						if(!(command instanceof HelpCommand) && !(command instanceof ListCommand)) {
+							game.update();
+							System.out.println(game.infoToString());
+							draw = new BoardPrinter(Game.DIM_X + 1, Game.DIM_Y + 1);
+							System.out.println(draw.toString(game));
+							System.out.println("Command > ");
+						}
 					}
-					
 				}else {
 					System.out.format("COMANDO ERRRONEO\n");
 					System.out.println("Command > ");

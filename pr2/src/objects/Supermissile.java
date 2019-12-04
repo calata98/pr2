@@ -23,4 +23,10 @@ public class Supermissile extends UCMMissile {
 	public void onDelete() {
 		game.deleteSuperMisil();
 	}
+	
+	@Override
+	public String getStringifyText() {
+		return "X;" + x + ";" + y;
+	}
+	
 }

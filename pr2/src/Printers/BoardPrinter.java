@@ -12,10 +12,9 @@ public class BoardPrinter implements GamePrinter{
 		final String space = " ";
 		
 		
-		public BoardPrinter (Game game, int rows, int cols) {
+		public BoardPrinter (int rows, int cols) {
 			this.numRows = rows;
-			this.numCols = cols;		
-			encodeGame(game);
+			this.numCols = cols;	
 		}
 		
 		public BoardPrinter() {
@@ -30,9 +29,9 @@ public class BoardPrinter implements GamePrinter{
 				}
 			}
 		}
-		
-		public String toString() {
-
+		@Override
+		public String toString(Game game) {
+			encodeGame(game);
 			int cellSize = 7;
 			int marginSize = 2;
 			String vDelimiter = "|";
@@ -57,12 +56,6 @@ public class BoardPrinter implements GamePrinter{
 		}
 
 		@Override
-		public String toString(Game game) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
 		public GamePrinter parse(String name) {
 			// TODO Auto-generated method stub
 			return null;
@@ -72,11 +65,6 @@ public class BoardPrinter implements GamePrinter{
 		public String helpText() {
 			// TODO Auto-generated method stub
 			return null;
-		}
-
-		@Override
-		public void setGame(Game game) {
-			
 		}
 	}
 	

@@ -65,5 +65,11 @@ public class RegularAlien extends AlienShip implements IExecuteRandomActions{
 	public String list() {
 		return "[R]egular ship: Points: " + points + " -  Harm: 0 - Shield: " + live;
 	}
+
+
+	@Override
+	public String getStringifyText() {
+		return "R;" + x + ";" + y + ";" + live + ";"+ (game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()) + ";" + dir;
+	}
 	
 }

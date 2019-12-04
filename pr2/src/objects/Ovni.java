@@ -67,4 +67,13 @@ public class Ovni extends EnemyShip implements IExecuteRandomActions{
 		computerAction();
 	}
 
+	@Override
+	public String getStringifyText() {
+		if(enabled) {
+			return "O;"+ x + ";" + y + ";" + live;
+		}else {
+			return null;
+		}
+	}
+
 }

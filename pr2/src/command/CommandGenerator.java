@@ -11,7 +11,8 @@ public class CommandGenerator {
 			new MoveCommand(),
 			new ShockwaveCommand(),
 			new ShootCommand(),
-			new BuyMissileCommand()
+			new BuyMissileCommand(),
+			new StringifyCommand()
 			};
 	public static Command parseCommand(String[ ] commandWords) {
 		Command command=null;

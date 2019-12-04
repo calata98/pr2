@@ -23,7 +23,6 @@ public class Game implements IPlayerController{
 	private int currentCycle;
 	private Random rand;
 	private Level level;
-	private int points;
 
 	GameObjectBoard board;
 
@@ -110,7 +109,7 @@ public class Game implements IPlayerController{
 		
 		str += "Life: " + player.getLive() + " \n";
 		str += "Number of cycles: " + currentCycle + " \n";
-		str += "Points: " + points + " \n";
+		str += "Points: " + player.getPoints() + " \n";
 		str += "Remaining aliens: " + numNaves + " \n";	
 		str += "ShockWave: ";
 		
@@ -164,18 +163,17 @@ public class Game implements IPlayerController{
 
 	@Override
 	public void receivePoints(int points) {
-		this.points += points;
+		player.receivePoints(points);
 	}
 
 	@Override
 	public void enableShockWave() {
-		addObject(new Shockwave(this,-1,-1,1));
 		shockwave = true;
 	}
 
 	@Override
 	public boolean enableMissile() {
-		if(points >= 20) {
+		if(player.getPoints() >= 20) {
 			superMisilComprado = true;
 			numSuperMisiles++;
 			return true;
@@ -195,8 +193,16 @@ public class Game implements IPlayerController{
 		this.numNaves = numNaves;
 	}
 	
+	public int getCurrentObjects() {
+		return board.getCurrentObjects();
+	}
+	
 	public int getCurrentCycle() {
 		return currentCycle;
+	}
+	
+	public String getStringifyText(int i) {
+		return board.getStringifyText(i);
 	}
 	
 	public String list() {

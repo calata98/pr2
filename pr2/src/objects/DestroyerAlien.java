@@ -39,4 +39,9 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 		return "[D]estroyer ship: Points: " + points + " -  Harm: 1 - Shield: " + live;
 	}
 
+	@Override
+	public String getStringifyText() {
+		return "D;" + x + ";" + y + ";" + live + ";"+ (game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()) + ";" + dir;
+	}
+
 }

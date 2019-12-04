@@ -12,6 +12,7 @@ public abstract class AlienShip extends EnemyShip{
 	protected static int numNaves;
 	protected static boolean explodeCreated;
 	protected int points;
+	protected String dir;
 	
 	public AlienShip() {
 		
@@ -22,6 +23,7 @@ public abstract class AlienShip extends EnemyShip{
 		tierra = false;
 		numNaves = game.getLevel().getNumDestroyerAliens() + game.getLevel().getNumRegularAliens();
 		izq = true;
+		dir = "izq";
 		estado = "normal";
 		navesPorMover = numNaves;
 	}
@@ -109,6 +111,16 @@ public abstract class AlienShip extends EnemyShip{
 		if(navesPorMover == 0) {
 			navesPorMover = numNaves;
 		}
+		if(estado.equals("moverAbajo")) {
+			dir = "down";
+		}else {
+			if(izq) {
+				dir = "left";
+			}else {
+				dir = "right";
+			}
+		}
+		
 		computerAction();
 		
 	}

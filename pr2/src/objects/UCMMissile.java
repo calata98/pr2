@@ -47,4 +47,9 @@ public class UCMMissile extends Weapon{
 	public String list() {
 		return null;
 	}
+
+	@Override
+	public String getStringifyText() {
+		return "M;" + x + ";" + y;
+	}
 }

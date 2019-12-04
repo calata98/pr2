@@ -8,6 +8,7 @@ public class UCMShip extends Ship{
 	private String direccion;
 	private int numCeldas;
 	private UCMMissile misil;
+	private int points;
 
 	public UCMShip() {
 		
@@ -91,9 +92,22 @@ public class UCMShip extends Ship{
 		
 	}
 	
+	public void receivePoints(int points) {
+		this.points += points;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
 	@Override
 	public String list() {
 		return "^___^:  Harm: 1 - Shield: " + live;
+	}
+
+	@Override
+	public String getStringifyText() {
+		return "P;" + x + ";" + y + ";" + live + ";" + points;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class GameObjectBoard {
 		objects = new GameObject [30];
 	}
 	
-	private int getCurrentObjects () {
+	public int getCurrentObjects () {
 		return currentObjects;
 	}
 	
@@ -39,7 +39,7 @@ public class GameObjectBoard {
 		return null;
 	}
 	
-	private int getIndex(int x, int y) {
+	/*private int getIndex(int x, int y) {
 		boolean found = false;
 		int contador = 0;
 		while(!found) {
@@ -52,7 +52,7 @@ public class GameObjectBoard {
 			contador++;
 		}
 		return contador;
-	}
+	}*/
 
 	public void remove (GameObject object) {
 		for(int i = 0; i < objects.length; i++) {
@@ -73,6 +73,7 @@ public class GameObjectBoard {
 			}
 		}
 		removeDead();
+		System.out.println(currentObjects);
 	}
 	
 	private void checkAttacks(GameObject object) {
@@ -89,6 +90,7 @@ public class GameObjectBoard {
 	}
 	
 	private void removeDead() {
+		currentObjects = 0;
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && !objects[i].isAlive()) {
 				if(!(objects[i] instanceof UCMShip) && !(objects[i] instanceof Ovni)) {
@@ -96,6 +98,9 @@ public class GameObjectBoard {
 				}else {
 					objects[i].onDelete();
 				}
+			}
+			if(objects[i] != null) {
+				currentObjects++;
 			}
 		}
 	}
@@ -141,7 +146,9 @@ public class GameObjectBoard {
 		return str;
 	}
 	
-	
+	public String getStringifyText(int i) {
+		return objects[i].getStringifyText();
+	}
 
 	public String toString(int x, int y) {
 		removeDead();

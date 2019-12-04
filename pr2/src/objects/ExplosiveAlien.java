@@ -33,7 +33,10 @@ public class ExplosiveAlien extends RegularAlien {
 		}
 	}
 	
-	
+	@Override
+	public String getStringifyText() {
+		return "E;" + x + ";" + y + ";" + live + ";"+ (game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()) + ";" + dir;
+	}
 
 
 	@Override

@@ -9,12 +9,12 @@ public class StringifyCommand extends Command {
 	}
 	public boolean execute(Game game) {
 		
-		return false;
+		return true;
 	}
 	public Command parse(String[] commandWords) {
 		Command command=null;
 		
-		if(commandWords[0].toLowerCase().equals("str")||commandWords[0].toLowerCase().equals("stringify")) {
+		if(commandWords.length == 1 && commandWords[0].toLowerCase().equals("stringify")) {
 			command = new StringifyCommand();
 		}
 		return command;	

@@ -45,12 +45,17 @@ public class Shockwave extends Weapon{
 		if(game.getShockWave()) {
 			return true;
 		}
-		
 		return false;
 	}
 
 	@Override
 	public String list() {
+		return null;
+	}
+
+	@Override
+	public String getStringifyText() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

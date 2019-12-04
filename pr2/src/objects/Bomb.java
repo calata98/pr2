@@ -44,4 +44,9 @@ public class Bomb extends Weapon {
 		return null;
 	}
 
+	@Override
+	public String getStringifyText() {
+		return "B;" + x + ";" + y;
+	}
+
 }
