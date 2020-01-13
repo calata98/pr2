@@ -43,6 +43,7 @@ public class SaveCommand extends Command {
         }
 		
 		game.setUpdate(false);
+		game.setPrint(false);
 		return true;
 	}
 	public Command parse(String[] commandWords) throws CommandParseException{

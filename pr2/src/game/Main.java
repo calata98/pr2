@@ -37,7 +37,7 @@ public class Main {
 		System.err.println("Usage: Main <EASY|HARD|INSANE> [seed]");
 		
 	}catch(NullPointerException e) {
-		System.err.println("Usage: Main <EASY|HARD|INSANE> [seed]: level must be one of: EASY, HARD, INSANE");
+		System.err.println("Usage: plantsVsZombies <EASY|HARD|INSANE> [seed]: level must be one of: EASY, HARD, INSANE");
 		
 	}
 	}

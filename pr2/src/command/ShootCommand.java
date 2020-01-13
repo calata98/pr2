@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandExecuteException;
 import game.Game;
 
 public class ShootCommand extends Command {
@@ -17,7 +18,7 @@ public class ShootCommand extends Command {
 
 			this.supermisil = supermisil;
 		}
-		public boolean execute(Game game) {	
+		public boolean execute(Game game) throws CommandExecuteException{	
 
 			return game.shootMissile(supermisil);
 		}

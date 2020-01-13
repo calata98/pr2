@@ -42,6 +42,18 @@ public class UCMMissile extends Weapon{
 	public boolean receiveBombAttack(int damage) {
 		return true;
 	}
+	
+	@Override
+	public boolean performAttack(GameObject other) {
+		if(other != null && this.isAlive() && other.isAlive()) {
+				if(other.receiveMissileAttack(live)) {
+					other.getDamage(live);
+					live--;
+				}
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public String list() {

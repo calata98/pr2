@@ -23,6 +23,18 @@ public class Bomb extends Weapon {
 		
 		
 	}
+	
+	@Override
+	public boolean performAttack(GameObject other) {
+		if(other != null && this.isAlive() && other.isAlive()) {
+				if(other.receiveBombAttack(live)) {
+					other.getDamage(live);
+					live--;
+				}
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void move() {
@@ -44,9 +56,13 @@ public class Bomb extends Weapon {
 		return null;
 	}
 
+	public String getText() {
+		return "B;" + x + ";" + y;
+	}
+	
 	@Override
 	public String getStringifyText() {
-		return "B;" + x + ";" + y;
+		return null;
 	}
 
 }

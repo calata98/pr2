@@ -9,6 +9,7 @@ public class ListCommand extends Command {
 	}
 	public boolean execute(Game game) {
 		game.setUpdate(false);
+		game.setPrint(false);
 		System.out.println(game.list());
 		return true;
 	}

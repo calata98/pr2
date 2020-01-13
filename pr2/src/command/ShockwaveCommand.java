@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.CommandExecuteException;
 import exceptions.CommandParseException;
 import game.Game;
 
@@ -8,7 +9,7 @@ public class ShockwaveCommand extends Command {
 	public ShockwaveCommand() {
 		super("Shockwave","w","Shockwave","UCM-Ship releases a shock wave.");
 	}
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException  {
 		game.shockWave();
 		return true;
 	}

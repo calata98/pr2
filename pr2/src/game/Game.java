@@ -5,6 +5,7 @@ import java.util.Random;
 import Printers.PrinterTypes;
 import board.BoardInitializer;
 import board.GameObjectBoard;
+import exceptions.CommandExecuteException;
 import objects.AlienShip;
 import objects.GameObject;
 import objects.UCMShip;
@@ -24,6 +25,7 @@ public class Game implements IPlayerController{
 	private Level level;
 	private PrinterTypes printer;
 	private boolean update;
+	private boolean print;
 
 	GameObjectBoard board;
 
@@ -50,6 +52,7 @@ public class Game implements IPlayerController{
 		numNaves = level.getNumDestroyerAliens() + level.getNumRegularAliens();
 		doExit = false;
 		update = true;
+		print = true;
 		printer = PrinterTypes.BOARDPRINTER;
 	}
 
@@ -93,6 +96,12 @@ public class Game implements IPlayerController{
 			board.update();
 			currentCycle += 1;
 		}
+		if(print) {
+			System.out.println(printer.getObject().toString(this));
+		}
+		printer = PrinterTypes.BOARDPRINTER;
+		update = true;
+		print = true;
 	}
 	
 
@@ -134,26 +143,28 @@ public class Game implements IPlayerController{
 	}
 
 	@Override
-	public boolean move(String direccion,int numCells) {
+	public void move(String direccion,int numCells) throws CommandExecuteException {
 		player.setMove(direccion, numCells);
-		return player.moveUCM();
+		player.moveUCM();
 	}
 	
 
 
 	@Override
-	public boolean shootMissile(boolean supermisil) {
+	public boolean shootMissile(boolean supermisil) throws CommandExecuteException {
 		if(supermisil && numSuperMisiles == 0) {
-			return false;
+			throw new CommandExecuteException("No tienes supermisiles disponibles");
 		}else {
 			return player.shoot(supermisil);
 		}
 	}
 
 	@Override
-	public boolean shockWave() {
+	public boolean shockWave() throws CommandExecuteException  {
 		if(shockwave) {
 			board.shockwave();
+		}else {
+			throw new CommandExecuteException("ShockWave no está disponible, mata al ovni");
 		}
 		
 		return shockwave;
@@ -174,12 +185,13 @@ public class Game implements IPlayerController{
 	}
 
 	@Override
-	public boolean enableMissile() {
+	public void enableMissile() throws CommandExecuteException{
 		if(player.getPoints() >= 20) {
 			numSuperMisiles++;
-			return true;
+			player.deletePoints(20);
+		}else {
+			throw new CommandExecuteException("Failed to buy a supermissile, you don't have 20 points");
 		}
-		return false;
 	}
 	
 	public PrinterTypes getPrinter() {
@@ -214,8 +226,8 @@ public class Game implements IPlayerController{
 		this.update = update;
 	}
 	
-	public boolean getUpdate() {
-		return update;
+	public void setPrint(boolean print) {
+		this.print = print;
 	}
 	
 	public String getStringifyText() {
