@@ -29,7 +29,6 @@ public class Controller {
 	}
 
 	public void run() {
-		System.out.println(game.infoToString());
 		System.out.println(printer.getObject().toString(game));
 		System.out.println("Command > ");
 		while (!end) {
@@ -38,14 +37,7 @@ public class Controller {
 			Command command = CommandGenerator.parseCommand(words);
 			if (command != null) {
 				if (command.execute(game)) {
-					printer =  game.getPrinter();
 					game.update();
-					if(!(command instanceof HelpCommand) && !(command instanceof ListCommand) && !(command instanceof ListPrintersCommand) 
-							&& !(command instanceof SaveCommand) && !(command instanceof ExitCommand)) {
-						System.out.println(printer.getObject().toString(game));
-					}
-					game.setPrinter(PrinterTypes.BOARDPRINTER);
-					game.setUpdate(true);
 				}
 			}
 			}catch(CommandParseException e) {
@@ -60,6 +52,7 @@ public class Controller {
 					System.err.println("Invalid argument for move command, number expected");
 					System.out.println();
 				}
+
 			System.out.println("Command > ");
 			if(game.isFinished()) {
 				end = true;

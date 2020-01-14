@@ -16,10 +16,9 @@ private String m;
 		this.m=m;
 	}
 	public boolean execute(Game game) throws CommandExecuteException {
+		game.move(m, n);
 		
-		if(!game.move(m,n)) {
-			throw new CommandExecuteException("fuera tablero");
-		}
+		
 		return true;
 	}
 	public Command parse(String[] commandWords) throws CommandParseException{

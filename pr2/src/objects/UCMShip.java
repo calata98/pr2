@@ -1,5 +1,6 @@
 package objects;
 
+import exceptions.CommandExecuteException;
 import game.Game;
 import interfaces.IPlayerController;
 
@@ -26,13 +27,14 @@ public class UCMShip extends Ship{
 		
 	}
 
-	public boolean moveUCM () {
+	public void moveUCM () throws CommandExecuteException {
 		if ((direccion.equals("left") && (y - numCeldas) >= 0) || (direccion.equals("right") && (y + numCeldas) <= Game.DIM_Y)) {
 			move();
-			return true;
+		}else {
+			throw new CommandExecuteException("fuera tablero");
 		}
-		return false;
 	}
+	
 	@Override
 	public void move() {
 		if(direccion.equals("right")) {
@@ -42,7 +44,7 @@ public class UCMShip extends Ship{
 		}
 	}
 	
-	public boolean shoot(boolean supermisil) {
+	public boolean shoot(boolean supermisil) throws CommandExecuteException {
 		if(misil != null && !misil.isAlive()) {
 			misil = null;
 		}
@@ -56,7 +58,7 @@ public class UCMShip extends Ship{
 			game.addObject(misil);
 			return true;
 		}
-		return false;
+		throw new CommandExecuteException("El misil sigue en el tablero");
 	}
 	
 
@@ -100,6 +102,10 @@ public class UCMShip extends Ship{
 	
 	public void receivePoints(int points) {
 		this.points += points;
+	}
+	
+	public void deletePoints(int points) {
+		this.points -= points;
 	}
 	
 	public int getPoints() {

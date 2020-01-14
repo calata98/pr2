@@ -1,15 +1,17 @@
 package interfaces;
 
+import exceptions.CommandExecuteException;
+
 public interface IPlayerController {
 	
 	// PLAYER ACTIONS	
-	public boolean move (String direccion, int numCells);
-	public boolean shootMissile(boolean supermisil);
-	public boolean shockWave();
+	public void move (String direccion, int numCells) throws CommandExecuteException ;
+	public boolean shootMissile(boolean supermisil) throws CommandExecuteException ;
+	public boolean shockWave() throws CommandExecuteException ;
 	
 	// CALLBACKS
 	public void receivePoints(int points);
 	public void enableShockWave();
-	public boolean enableMissile();
+	public void enableMissile() throws CommandExecuteException;
 	
 }

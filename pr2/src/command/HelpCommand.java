@@ -14,6 +14,7 @@ public class HelpCommand extends Command {
 		CommandGenerator.commandHelp();
 		System.out.println("");
 		game.setUpdate(false);
+		game.setPrint(false);
 		return true;
 	}
 	public Command parse(String[] commandWords) throws CommandParseException{

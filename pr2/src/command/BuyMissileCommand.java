@@ -11,9 +11,7 @@ public class BuyMissileCommand extends Command {
 		}
 	public boolean execute(Game game) throws CommandExecuteException {
 		game.setUpdate(false);
-		if(!game.enableMissile()) {
-			throw new CommandExecuteException("Failed to buy a supermissile, you don't have 20 points");
-		}
+		game.enableMissile();
 		return true;
 	}
 	public Command parse(String[] commandWords) {

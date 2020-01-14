@@ -41,7 +41,11 @@ public class DestroyerAlien extends AlienShip implements IExecuteRandomActions{
 
 	@Override
 	public String getStringifyText() {
-		return "D;" + x + ";" + y + ";" + live + ";"+ (game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()) + ";" + dir;
+		String text = "D;" + x + ";" + y + ";" + live + ";"+ (game.getCurrentCycle() % game.getLevel().getNumCyclesToMoveOneCell()) + ";" + dir;
+		if(bomba != null) {
+			text += "	" + bomba.getText();
+		}
+		return text;
 	}
 
 }

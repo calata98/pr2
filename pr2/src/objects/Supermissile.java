@@ -8,6 +8,8 @@ public class Supermissile extends UCMMissile {
 		super(game, x, y, live);
 		// TODO Auto-generated constructor stub
 	}
+	
+	private final int damage = 2;
 
 	@Override
 	public String toString() {
@@ -27,6 +29,18 @@ public class Supermissile extends UCMMissile {
 	@Override
 	public String getStringifyText() {
 		return "X;" + x + ";" + y;
+	}
+	
+	@Override
+	public boolean performAttack(GameObject other) {
+		if(other != null && this.isAlive() && other.isAlive()) {
+				if(other.receiveMissileAttack(damage)) {
+					other.getDamage(damage);
+					live -= damage;
+				}
+			return true;
+		}
+		return false;
 	}
 	
 }

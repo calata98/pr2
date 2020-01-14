@@ -74,11 +74,7 @@ public class GameObjectBoard {
 	private void removeDead() {
 		for(int i = 0; i < objects.length; i++) {
 			if(objects[i] != null && !objects[i].isAlive()) {
-				if(!(objects[i] instanceof UCMShip) && !(objects[i] instanceof Ovni)) {
 					remove(objects[i]);
-				}else {
-					objects[i].onDelete();
-				}
 			}
 		}
 	}
@@ -86,7 +82,7 @@ public class GameObjectBoard {
 	public void shockwave() {
 		
 		for(int i = 0; i < objects.length; i++) {
-			if(objects[i] != null && !(objects[i] instanceof Shockwave) && objects[i].receiveShockWaveAttack(1)){
+			if(objects[i] != null && objects[i].receiveShockWaveAttack(1)){
 				objects[i].getDamage(1);
 			}
 		}

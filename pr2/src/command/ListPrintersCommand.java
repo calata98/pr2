@@ -10,6 +10,7 @@ public class ListPrintersCommand extends Command {
 	public boolean execute(Game game) {
 		System.out.println(game.getPrinter().getObject().helpText());
 		game.setUpdate(false);
+		game.setPrint(false);
 		return true;
 	}
 	public Command parse(String[] commandWords)throws CommandParseException{
